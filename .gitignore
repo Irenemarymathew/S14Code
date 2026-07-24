@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual envs / uv
+.venv/
+venv/
+
+# Never commit secrets — S14Code holds none, but keep the guard
+.env
+.env.*
+*.pem
+*.key
+
+# OS / editor
+.DS_Store

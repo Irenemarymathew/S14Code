@@ -1,0 +1,164 @@
+{
+  "model": "gemma4:26b",
+  "raw": "{\"root\":\"root\",\"components\":[\n  {\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"g\",\"bc\",\"dt\"]},\n  {\"id\":\"rag_h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},\n  {\"id\":\"kpi_grid\",\"type\":\"Grid\",\"cols\":3,\"children\":[\"st1\",\"st2\",\"stpapers_w\",\"papers_w\"]},\n  {\"id\":\"st1\",\"type\":\"StatTile\",\"label\":\"Papers\", \"value\":{\"$bind\":\"/kpi_papers\"},\"tone\":\"good\"},\n  {\"id\":\"st2\",\"type\":\"StatTile\",\"label\":\"Chunks\", \"value\":{\"$bind\":\"/kpi_chunks\"},\"tone\":\"neutral\"},\n                {\"id\":\"st3\",\"type\":\"StatTile\",\"label\":\"Words\", \"value\":{\"$bind\":\"/kpi_words\"},\"unit\":\"tokens\", \"delta\":{\"$bind\":\"/kpi_words\"},\"tone\":\"good\"},\n  {\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Chunks per Paper\", \"data\":{\"$bind\":\"/chunks_by_paper\"},\"xKey\":\"label\",\"yKey\":\"value\"},\n  {\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"Paper, Chunks, Year\", \"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"Paper\"},\n  {\"id\":\"st3\",\"type\":\"DataTable\",\"type\":\"StatTile\",\"label\":\"Words\", \"value\":{\"$bind\":\"/kpi_words\"},\"unit\":\"tokens\", \"delta\":{\"$bind\":\"/rag_h\"},\n             \"tone\":\"good\"},\n       {\"id\":\"st3\",\"type\":\"DataTable\",\"type\":\"Flatters\",\n       \"text\":{\"$bind\":\"/title\"},\n             \"children\":[\"st1\",\"st3\",\"bc\",\"dt\"]}\n]}",
+  "surface_accepted": {
+    "root": "root",
+    "components": [
+      {
+        "id": "root",
+        "type": "Column",
+        "children": [
+          "h",
+          "g",
+          "bc",
+          "dt"
+        ]
+      },
+      {
+        "id": "rag_h",
+        "type": "Heading",
+        "text": {
+          "$bind": "/title"
+        }
+      },
+      {
+        "id": "kpi_grid",
+        "type": "Grid",
+        "cols": 3,
+        "children": [
+          "st1",
+          "st2",
+          "stpapers_w",
+          "papers_w"
+        ]
+      },
+      {
+        "id": "st1",
+        "type": "StatTile",
+        "label": "Papers",
+        "value": {
+          "$bind": "/kpi_papers"
+        },
+        "tone": "good"
+      },
+      {
+        "id": "st2",
+        "type": "StatTile",
+        "label": "Chunks",
+        "value": {
+          "$bind": "/kpi_chunks"
+        },
+        "tone": "neutral"
+      },
+      {
+        "id": "st3",
+        "type": "StatTile",
+        "label": "Words",
+        "value": {
+          "$bind": "/kpi_words"
+        },
+        "unit": "tokens",
+        "delta": {
+          "$bind": "/kpi_words"
+        },
+        "tone": "good"
+      },
+      {
+        "id": "bc",
+        "type": "BarChart",
+        "title": "Chunks per Paper",
+        "data": {
+          "$bind": "/chunks_by_paper"
+        },
+        "xKey": "label",
+        "yKey": "value"
+      },
+      {
+        "id": "dt",
+        "type": "DataTable",
+        "columns": "Paper, Chunks, Year",
+        "rows": {
+          "$bind": "/table_rows"
+        },
+        "sortable": true,
+        "filterKey": "Paper"
+      },
+      {
+        "id": "st3",
+        "type": "StatTile",
+        "label": "Words",
+        "value": {
+          "$bind": "/kpi_words"
+        },
+        "unit": "tokens",
+        "delta": {
+          "$bind": "/rag_h"
+        },
+        "tone": "good"
+      }
+    ],
+    "dataModel": {
+      "title": "Research corpus \u2014 composed by a live model",
+      "kpi_papers": 5,
+      "kpi_chunks": 19,
+      "kpi_words": 1038,
+      "chunks_by_paper": [
+        {
+          "label": "ReAct",
+          "value": 5
+        },
+        {
+          "label": "Attention",
+          "value": 4
+        },
+        {
+          "label": "DPO",
+          "value": 4
+        },
+        {
+          "label": "LoRA",
+          "value": 4
+        },
+        {
+          "label": "CoT",
+          "value": 2
+        }
+      ],
+      "table_rows": [
+        {
+          "Paper": "ReAct: Reasoning and Acting",
+          "Chunks": 5,
+          "Year": 2022
+        },
+        {
+          "Paper": "Attention Is All You Need",
+          "Chunks": 4,
+          "Year": 2017
+        },
+        {
+          "Paper": "Direct Preference Optimization",
+          "Chunks": 4,
+          "Year": 2023
+        },
+        {
+          "Paper": "LoRA: Low-Rank Adaptation",
+          "Chunks": 4,
+          "Year": 2021
+        },
+        {
+          "Paper": "Chain-of-Thought Prompting",
+          "Chunks": 2,
+          "Year": 2022
+        }
+      ]
+    }
+  },
+  "rejections": [
+    {
+      "component_id": "st3",
+      "field": "type",
+      "invariant": "catalog",
+      "reason": "unknown component type 'Flatters'"
+    }
+  ]
+}
