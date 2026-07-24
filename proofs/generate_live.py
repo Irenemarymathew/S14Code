@@ -19,9 +19,9 @@ import httpx
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from s14code.catalog import catalog_manifest  # noqa: E402
-from s14code.s13_client import RecordedS13  # noqa: E402
-from s14code.validator import validate_surface  # noqa: E402
+from s13code.ui.catalog import catalog_manifest  # noqa: E402
+from s13code.ui.fixtures import RecordedS13  # noqa: E402
+from s13code.ui.validator import validate_surface  # noqa: E402
 
 OUT = Path(__file__).parent / "generated_surface.json"
 

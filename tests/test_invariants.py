@@ -7,11 +7,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from s14code.agui import stream_agui
-from s14code.hitl import PendingAction, decide_resume
-from s14code.s13_client import RecordedS13, load_injections
-from s14code.surface import build_run_surface
-from s14code.validator import Invariant, validate_surface
+from s13code.ui.agui import stream_agui
+from s13code.ui.hitl import PendingAction, decide_resume
+from s13code.ui.fixtures import RecordedS13, load_injections
+from s13code.ui.surface import build_run_surface
+from s13code.ui.validator import Invariant, validate_surface
 
 
 def test_builder_surface_is_clean():
@@ -31,8 +31,8 @@ def test_each_injection_is_rejected_by_the_right_invariant():
 def test_safe_part_of_a_poisoned_surface_still_renders():
     case = next(c for c in load_injections()["cases"] if c["name"] == "raw-html-type")
     result = validate_surface(case["surface"])
-    # The Heading survives; only the RawHtml node is dropped.
-    assert any(c.get("type") == "Heading" for c in result.accepted)
+    # The Text heading survives; only the RawHtml node is dropped.
+    assert any(c.get("type") == "Text" for c in result.accepted)
     assert all(c.get("type") != "RawHtml" for c in result.accepted)
 
 

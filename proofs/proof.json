@@ -3,10 +3,9 @@
     "run_id": "three_cities",
     "component_count": 18,
     "types_used": [
-      "Badge",
       "Column",
-      "Heading",
       "Row",
+      "StatTile",
       "Text"
     ],
     "clean": true,
@@ -29,7 +28,8 @@
         },
         {
           "id": "h_title",
-          "type": "Heading",
+          "type": "Text",
+          "variant": "heading",
           "text": {
             "$bind": "/title"
           }
@@ -37,6 +37,8 @@
         {
           "id": "row_0",
           "type": "Row",
+          "align": "center",
+          "justify": "spaceBetween",
           "children": [
             "name_0",
             "state_0"
@@ -45,14 +47,16 @@
         {
           "id": "name_0",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/node_0_name"
           }
         },
         {
           "id": "state_0",
-          "type": "Badge",
-          "text": {
+          "type": "StatTile",
+          "label": "state",
+          "value": {
             "$bind": "/node_0_state"
           },
           "tone": "good"
@@ -60,6 +64,8 @@
         {
           "id": "row_1",
           "type": "Row",
+          "align": "center",
+          "justify": "spaceBetween",
           "children": [
             "name_1",
             "state_1"
@@ -68,14 +74,16 @@
         {
           "id": "name_1",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/node_1_name"
           }
         },
         {
           "id": "state_1",
-          "type": "Badge",
-          "text": {
+          "type": "StatTile",
+          "label": "state",
+          "value": {
             "$bind": "/node_1_state"
           },
           "tone": "good"
@@ -83,6 +91,8 @@
         {
           "id": "row_2",
           "type": "Row",
+          "align": "center",
+          "justify": "spaceBetween",
           "children": [
             "name_2",
             "state_2"
@@ -91,14 +101,16 @@
         {
           "id": "name_2",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/node_2_name"
           }
         },
         {
           "id": "state_2",
-          "type": "Badge",
-          "text": {
+          "type": "StatTile",
+          "label": "state",
+          "value": {
             "$bind": "/node_2_state"
           },
           "tone": "good"
@@ -106,6 +118,8 @@
         {
           "id": "row_3",
           "type": "Row",
+          "align": "center",
+          "justify": "spaceBetween",
           "children": [
             "name_3",
             "state_3"
@@ -114,14 +128,16 @@
         {
           "id": "name_3",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/node_3_name"
           }
         },
         {
           "id": "state_3",
-          "type": "Badge",
-          "text": {
+          "type": "StatTile",
+          "label": "state",
+          "value": {
             "$bind": "/node_3_state"
           },
           "tone": "good"
@@ -129,6 +145,8 @@
         {
           "id": "row_4",
           "type": "Row",
+          "align": "center",
+          "justify": "spaceBetween",
           "children": [
             "name_4",
             "state_4"
@@ -137,14 +155,16 @@
         {
           "id": "name_4",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/node_4_name"
           }
         },
         {
           "id": "state_4",
-          "type": "Badge",
-          "text": {
+          "type": "StatTile",
+          "label": "state",
+          "value": {
             "$bind": "/node_4_state"
           },
           "tone": "good"
@@ -175,19 +195,17 @@
     }
   },
   "showcase": {
-    "component_count": 25,
-    "distinct_types": 13,
+    "component_count": 20,
+    "distinct_types": 11,
     "types_used": [
       "BarChart",
       "Column",
       "DataTable",
       "Divider",
-      "Grid",
-      "Heading",
       "ProgressBar",
+      "Row",
       "Sparkline",
       "StatTile",
-      "Tab",
       "Tabs",
       "Text",
       "Timeline"
@@ -219,7 +237,8 @@
         },
         {
           "id": "title",
-          "type": "Heading",
+          "type": "Text",
+          "variant": "heading",
           "text": {
             "$bind": "/kpi_title"
           }
@@ -278,8 +297,9 @@
         },
         {
           "id": "kpi_row",
-          "type": "Grid",
-          "cols": 4,
+          "type": "Row",
+          "align": "stretch",
+          "justify": "spaceBetween",
           "children": [
             "k_papers",
             "k_chunks",
@@ -295,8 +315,7 @@
             "$bind": "/chunks_by_paper"
           },
           "xKey": "label",
-          "yKey": "value",
-          "unit": "chunks"
+          "yKey": "value"
         },
         {
           "id": "spark",
@@ -317,8 +336,9 @@
         },
         {
           "id": "charts_row",
-          "type": "Grid",
-          "cols": 3,
+          "type": "Row",
+          "align": "stretch",
+          "justify": "spaceBetween",
           "children": [
             "bars",
             "spark",
@@ -338,88 +358,53 @@
         {
           "id": "detail_0",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/paper_0_detail"
           }
         },
         {
-          "id": "tab_0",
-          "type": "Tab",
-          "label": "paper 1",
-          "children": [
-            "detail_0"
-          ]
-        },
-        {
           "id": "detail_1",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/paper_1_detail"
           }
         },
         {
-          "id": "tab_1",
-          "type": "Tab",
-          "label": "paper 2",
-          "children": [
-            "detail_1"
-          ]
-        },
-        {
           "id": "detail_2",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/paper_2_detail"
           }
         },
         {
-          "id": "tab_2",
-          "type": "Tab",
-          "label": "paper 3",
-          "children": [
-            "detail_2"
-          ]
-        },
-        {
           "id": "detail_3",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/paper_3_detail"
           }
         },
         {
-          "id": "tab_3",
-          "type": "Tab",
-          "label": "paper 4",
-          "children": [
-            "detail_3"
-          ]
-        },
-        {
           "id": "detail_4",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/paper_4_detail"
           }
         },
         {
-          "id": "tab_4",
-          "type": "Tab",
-          "label": "paper 5",
-          "children": [
-            "detail_4"
-          ]
-        },
-        {
           "id": "tabs",
           "type": "Tabs",
-          "labels": "one,two,three,four,five",
+          "labels": "paper 1,paper 2,paper 3,paper 4,paper 5",
           "children": [
-            "tab_0",
-            "tab_1",
-            "tab_2",
-            "tab_3",
-            "tab_4"
+            "detail_0",
+            "detail_1",
+            "detail_2",
+            "detail_3",
+            "detail_4"
           ]
         },
         {

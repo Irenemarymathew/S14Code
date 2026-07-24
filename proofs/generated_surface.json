@@ -1,6 +1,6 @@
 {
   "model": "gemma4:26b",
-  "raw": "{\"root\":\"root\",\"components\":[\n  {\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"g\",\"bc\",\"dt\"]},\n  {\"id\":\"rag_h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},\n  {\"id\":\"kpi_grid\",\"type\":\"Grid\",\"cols\":3,\"children\":[\"st1\",\"st2\",\"stpapers_w\",\"papers_w\"]},\n  {\"id\":\"st1\",\"type\":\"StatTile\",\"label\":\"Papers\", \"value\":{\"$bind\":\"/kpi_papers\"},\"tone\":\"good\"},\n  {\"id\":\"st2\",\"type\":\"StatTile\",\"label\":\"Chunks\", \"value\":{\"$bind\":\"/kpi_chunks\"},\"tone\":\"neutral\"},\n                {\"id\":\"st3\",\"type\":\"StatTile\",\"label\":\"Words\", \"value\":{\"$bind\":\"/kpi_words\"},\"unit\":\"tokens\", \"delta\":{\"$bind\":\"/kpi_words\"},\"tone\":\"good\"},\n  {\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Chunks per Paper\", \"data\":{\"$bind\":\"/chunks_by_paper\"},\"xKey\":\"label\",\"yKey\":\"value\"},\n  {\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"Paper, Chunks, Year\", \"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"Paper\"},\n  {\"id\":\"st3\",\"type\":\"DataTable\",\"type\":\"StatTile\",\"label\":\"Words\", \"value\":{\"$bind\":\"/kpi_words\"},\"unit\":\"tokens\", \"delta\":{\"$bind\":\"/rag_h\"},\n             \"tone\":\"good\"},\n       {\"id\":\"st3\",\"type\":\"DataTable\",\"type\":\"Flatters\",\n       \"text\":{\"$bind\":\"/title\"},\n             \"children\":[\"st1\",\"st3\",\"bc\",\"dt\"]}\n]}",
+  "raw": "{\"root\":\"root\",\"components\":[\n  {\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"grid_container\",\"chart_container\",\"table_container\"]},\n  {\"id\":\"h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},\n  {\"id\":\"grid_container\",\"type\":\"Row\",\"align\":\"start\",\"justify\":\"spaceBetween\",\"children\":[\"t1\",\"t2\",\"t3\"]},\n  {\"id\":\"t1\",\"type\":\"StatTile\",\"label\":\"Papers\", \"value\":{\"$bind\":\"/kpi_papers\"},\"tone\":\"good\"},\n  {\"id\":\"t2\",\"type\":\"StatTile\",\"label\":\"Chunks\", \"value\":{\"$bind\":\"/kpi_chunks\"},\"tone\":\"neutral\"},\n             {\"id\":\"theading\",\"t_val\":true},\n  {\"id\":\"t3\",\"type\":\"StatTile\",\"label\":\"Corpus_undercore\", \"value\":{\"$bind\":\"/kpi_words\"},\"unit\":\"words\", \"tone\":\"neutral\"},\n  {\"id\":\"chart_container\",\"type\":\"Column\",\"children\":[\"bc\",\"div1\"]},\n  {\"id\":\"bc\",\"type\":\"TypoError_in_JSON_Logic_Check_Required_Wait_No_I_Must_Follow_Instructions_Strictly\"},\n  {\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Chunks by Paper\", \"data\":{\"$bind\":\"/chunks_by_paper\"},\"xKey\":\"label\",\"yKey\":\"value\"},\n  {\"id\":\"div1\",\"type\":\"Divider\",\"children\":[]},\n  {\"id\":\"table_container\",\"type\":\"Column\",\"children\":[\"dt\"]},\n  {\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"Paper,Chunks,Year\", \"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"Paper\"},\n  {\"id\":\"grid_container\",\"type\":\"ragged_error_check\"},\n  {\"id\":\"t2\",\"type\":\"StatTile\",\"label\":\"Chunks\", \"value\":{\"$bind\":\"/kpi_chunks\"},\"tone\":\"undetermined\"},\n  {\"id\":\"t2\",\"type\":\"StatTile\",\"label\":\"Chunks\", \"value\":{\"$bind\":\"/kpi_chunks\"},\"tone\":\"neutral\"},\n  {\"id\":\"t3\",\"type\":\"type_error_check\"},\n  {\"id\":\"t3\",\"type\":\"StatTile\",\"type\":\"error\"},\n  {\"id\":\"t3\",\"type\":\"StatTile\",\"label\":\"Error_Check_In_JSON_Structure_Logic_Check_Required_Wait_No_I_Must_Follow_Instructions_Strictly\"},\n  {\"id\":\"t3\",\"type\":\"StatTile\",\"label\":\"Chunks\", \"value\":{\"$bind\":\"/kpi_words\"},\"unit\":\"words\", \"tone\":\"neutral\"}\n]}",
   "surface_accepted": {
     "root": "root",
     "components": [
@@ -9,31 +9,24 @@
         "type": "Column",
         "children": [
           "h",
-          "g",
-          "bc",
-          "dt"
+          "grid_container",
+          "chart_container",
+          "table_container"
         ]
       },
       {
-        "id": "rag_h",
-        "type": "Heading",
-        "text": {
-          "$bind": "/title"
-        }
-      },
-      {
-        "id": "kpi_grid",
-        "type": "Grid",
-        "cols": 3,
+        "id": "grid_container",
+        "type": "Row",
+        "align": "start",
+        "justify": "spaceBetween",
         "children": [
-          "st1",
-          "st2",
-          "stpapers_w",
-          "papers_w"
+          "t1",
+          "t2",
+          "t3"
         ]
       },
       {
-        "id": "st1",
+        "id": "t1",
         "type": "StatTile",
         "label": "Papers",
         "value": {
@@ -42,7 +35,7 @@
         "tone": "good"
       },
       {
-        "id": "st2",
+        "id": "t2",
         "type": "StatTile",
         "label": "Chunks",
         "value": {
@@ -51,22 +44,27 @@
         "tone": "neutral"
       },
       {
-        "id": "st3",
+        "id": "t3",
         "type": "StatTile",
-        "label": "Words",
+        "label": "Corpus_undercore",
         "value": {
           "$bind": "/kpi_words"
         },
-        "unit": "tokens",
-        "delta": {
-          "$bind": "/kpi_words"
-        },
-        "tone": "good"
+        "unit": "words",
+        "tone": "neutral"
+      },
+      {
+        "id": "chart_container",
+        "type": "Column",
+        "children": [
+          "bc",
+          "div1"
+        ]
       },
       {
         "id": "bc",
         "type": "BarChart",
-        "title": "Chunks per Paper",
+        "title": "Chunks by Paper",
         "data": {
           "$bind": "/chunks_by_paper"
         },
@@ -74,9 +72,21 @@
         "yKey": "value"
       },
       {
+        "id": "div1",
+        "type": "Divider",
+        "children": []
+      },
+      {
+        "id": "table_container",
+        "type": "Column",
+        "children": [
+          "dt"
+        ]
+      },
+      {
         "id": "dt",
         "type": "DataTable",
-        "columns": "Paper, Chunks, Year",
+        "columns": "Paper,Chunks,Year",
         "rows": {
           "$bind": "/table_rows"
         },
@@ -84,17 +94,28 @@
         "filterKey": "Paper"
       },
       {
-        "id": "st3",
+        "id": "t2",
         "type": "StatTile",
-        "label": "Words",
+        "label": "Chunks",
+        "value": {
+          "$bind": "/kpi_chunks"
+        },
+        "tone": "neutral"
+      },
+      {
+        "id": "t3",
+        "type": "StatTile",
+        "label": "Error_Check_In_JSON_Structure_Logic_Check_Required_Wait_No_I_Must_Follow_Instructions_Strictly"
+      },
+      {
+        "id": "t3",
+        "type": "StatTile",
+        "label": "Chunks",
         "value": {
           "$bind": "/kpi_words"
         },
-        "unit": "tokens",
-        "delta": {
-          "$bind": "/rag_h"
-        },
-        "tone": "good"
+        "unit": "words",
+        "tone": "neutral"
       }
     ],
     "dataModel": {
@@ -155,10 +176,46 @@
   },
   "rejections": [
     {
-      "component_id": "st3",
+      "component_id": "h",
       "field": "type",
       "invariant": "catalog",
-      "reason": "unknown component type 'Flatters'"
+      "reason": "unknown component type 'Heading'"
+    },
+    {
+      "component_id": "theading",
+      "field": "type",
+      "invariant": "catalog",
+      "reason": "unknown component type None"
+    },
+    {
+      "component_id": "bc",
+      "field": "type",
+      "invariant": "catalog",
+      "reason": "unknown component type 'TypoError_in_JSON_Logic_Check_Required_Wait_No_I_Must_Follow_Instructions_Strictly'"
+    },
+    {
+      "component_id": "grid_container",
+      "field": "type",
+      "invariant": "catalog",
+      "reason": "unknown component type 'ragged_error_check'"
+    },
+    {
+      "component_id": "t2",
+      "field": "tone",
+      "invariant": "data-not-code",
+      "reason": "'undetermined' not in ('neutral', 'good', 'warn', 'bad')"
+    },
+    {
+      "component_id": "t3",
+      "field": "type",
+      "invariant": "catalog",
+      "reason": "unknown component type 'type_error_check'"
+    },
+    {
+      "component_id": "t3",
+      "field": "type",
+      "invariant": "catalog",
+      "reason": "unknown component type 'error'"
     }
   ]
 }

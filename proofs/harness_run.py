@@ -23,8 +23,12 @@ import sys
 import tempfile
 from pathlib import Path
 
-# S13Code lives two levels up from this proofs/ dir: EAGV3/S13/S13Code
-S13CODE = Path(os.environ.get("S13CODE_PATH") or (Path(__file__).resolve().parents[3] / "S13" / "S13Code"))
+# The s13code engine, the S14 UI catalog/validator, and the compose_surface
+# skill all ship together in THIS self-contained build tree (S14CodeBuild). We
+# import the LOCAL package so the harness exercises the realigned A2UI-Basic
+# catalog, its validator, and the compose_surface prompt that ship here — the
+# same code the pytest suite covers. S13CODE_PATH can still point elsewhere.
+S13CODE = Path(os.environ.get("S13CODE_PATH") or Path(__file__).resolve().parents[1])
 sys.path.insert(0, str(S13CODE))
 
 from s13code.core.memory import MemoryScope  # noqa: E402

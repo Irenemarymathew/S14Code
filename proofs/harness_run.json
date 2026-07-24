@@ -1,6 +1,6 @@
 {
   "task": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
-  "run_id": "run-b23c1f80a815",
+  "run_id": "run-cc3b2834e1c1",
   "status": "completed",
   "gateway_base_url": "http://127.0.0.1:8111",
   "gateway_provider_env": "gemini",
@@ -18,21 +18,21 @@
         "skill": "researcher",
         "state": "succeeded",
         "agent": "researcher",
-        "provider": "gemini_1",
+        "provider": "gemini_3",
         "model": "gemini-3.1-flash-lite"
       },
       "search_2": {
         "skill": "researcher",
         "state": "succeeded",
         "agent": "researcher",
-        "provider": "gemini_3",
+        "provider": "gemini_2",
         "model": "gemini-3.1-flash-lite"
       },
       "search_3": {
         "skill": "researcher",
         "state": "succeeded",
         "agent": "researcher",
-        "provider": "gemini_2",
+        "provider": "gemini_1",
         "model": "gemini-3.1-flash-lite"
       },
       "surface": {
@@ -103,7 +103,7 @@
     {
       "sequence": 6,
       "kind": "task_succeeded",
-      "node_id": "search_1"
+      "node_id": "search_3"
     },
     {
       "sequence": 7,
@@ -113,7 +113,7 @@
     {
       "sequence": 8,
       "kind": "task_succeeded",
-      "node_id": "search_3"
+      "node_id": "search_2"
     },
     {
       "sequence": 9,
@@ -123,7 +123,7 @@
     {
       "sequence": 10,
       "kind": "task_succeeded",
-      "node_id": "search_2"
+      "node_id": "search_1"
     },
     {
       "sequence": 11,
@@ -173,10 +173,10 @@
       "Paris"
     ],
     "parse_ok": true,
-    "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"stats\",\"charts\",\"dt\",\"tabs\",\"prog\",\"tl\"]},{\"id\":\"h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"stats\",\"type\":\"Grid\",\"cols\":3,\"children\":[\"s1\",\"s2\",\"s3\"]},{\"id\":\"s1\",\"type\":\"StatTile\",\"label\":\"Cities\",\"value\":{\"$bind\":\"/kpi_cities\"}},{\"id\":\"s2\",\"type\":\"StatTile\",\"label\":\"Sources\",\"value\":{\"$bind\":\"/kpi_sources\"}},{\"id\":\"s3\",\"type\":\"StatTile\",\"label\":\"Research Nodes\",\"value\":{\"$bind\":\"/kpi_research_nodes\"}},{\"id\":\"charts\",\"type\":\"Row\",\"children\":[\"bc\",\"sp\"]},{\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Population\",\"data\":{\"$bind\":\"/population_bars\"},\"xKey\":\"label\",\"yKey\":\"value\"},{\"id\":\"sp\",\"type\":\"Sparkline\",\"data\":{\"$bind\":\"/spark\"}},{\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"City,Population_M,Sources\",\"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"City\"},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"London,Berlin,Paris\",\"children\":[\"t1\",\"t2\",\"t3\"]},{\"id\":\"t1\",\"type\":\"Tab\",\"label\":\"London\",\"children\":[\"t1_text\"]},{\"id\":\"t1_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_0_detail\"}},{\"id\":\"t2\",\"type\":\"Tab\",\"label\":\"Berlin\",\"children\":[\"t2_text\"]},{\"id\":\"t2_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_1_detail\"}},{\"id\":\"t3\",\"type\":\"Tab\",\"label\":\"Paris\",\"children\":[\"t3_text\"]},{\"id\":\"t3_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_2_detail\"}},{\"id\":\"prog\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":5},{\"id\":\"tl\",\"type\":\"Timeline\",\"title\":\"Run Timeline\",\"events\":{\"$bind\":\"/timeline_events\"}}]}",
+    "raw_surface": "{\n  \"root\": \"main\",\n  \"components\": [\n    {\n      \"id\": \"main\",\n      \"type\": \"Column\",\n      \"children\": [\n        \"title\",\n        \"kpi_row\",\n        \"charts_row\",\n        \"table\",\n        \"tabs\",\n        \"progress\",\n        \"timeline\"\n      ]\n    },\n    {\n      \"id\": \"title\",\n      \"type\": \"Text\",\n      \"variant\": \"heading\",\n      \"text\": {\n        \"$bind\": \"/title\"\n      }\n    },\n    {\n      \"id\": \"kpi_row\",\n      \"type\": \"Row\",\n      \"justify\": \"spaceAround\",\n      \"children\": [\n        \"kpi1\",\n        \"kpi2\",\n        \"kpi3\"\n      ]\n    },\n    {\n      \"id\": \"kpi1\",\n      \"type\": \"StatTile\",\n      \"label\": \"Cities\",\n      \"value\": {\n        \"$bind\": \"/kpi_cities\"\n      }\n    },\n    {\n      \"id\": \"kpi2\",\n      \"type\": \"StatTile\",\n      \"label\": \"Sources\",\n      \"value\": {\n        \"$bind\": \"/kpi_sources\"\n      }\n    },\n    {\n      \"id\": \"kpi3\",\n      \"type\": \"StatTile\",\n      \"label\": \"Research Nodes\",\n      \"value\": {\n        \"$bind\": \"/kpi_research_nodes\"\n      }\n    },\n    {\n      \"id\": \"charts_row\",\n      \"type\": \"Row\",\n      \"align\": \"center\",\n      \"children\": [\n        \"bar_chart\",\n        \"sparkline\"\n      ]\n    },\n    {\n      \"id\": \"bar_chart\",\n      \"type\": \"BarChart\",\n      \"title\": \"Population (M)\",\n      \"data\": {\n        \"$bind\": \"/population_bars\"\n      },\n      \"xKey\": \"label\",\n      \"yKey\": \"value\"\n    },\n    {\n      \"id\": \"sparkline\",\n      \"type\": \"Sparkline\",\n      \"data\": {\n        \"$bind\": \"/spark\"\n      },\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"table\",\n      \"type\": \"DataTable\",\n      \"columns\": \"City,Population_M,Sources\",\n      \"rows\": {\n        \"$bind\": \"/table_rows\"\n      },\n      \"sortable\": true,\n      \"filterKey\": \"City\"\n    },\n    {\n      \"id\": \"tabs\",\n      \"type\": \"Tabs\",\n      \"labels\": \"London,Berlin,Paris\",\n      \"children\": [\n        \"p0\",\n        \"p1\",\n        \"p2\"\n      ]\n    },\n    {\n      \"id\": \"p0\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_0_detail\"\n      }\n    },\n    {\n      \"id\": \"p1\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_1_detail\"\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_2_detail\"\n      }\n    },\n    {\n      \"id\": \"progress\",\n      \"type\": \"ProgressBar\",\n      \"value\": {\n        \"$bind\": \"/progress_value\"\n      },\n      \"max\": 5,\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"timeline\",\n      \"type\": \"Timeline\",\n      \"title\": \"Process Timeline\",\n      \"events\": {\n        \"$bind\": \"/timeline_events\"\n      }\n    }\n  ]\n}",
     "validator": {
-      "proposed": 19,
-      "accepted": 19,
+      "proposed": 16,
+      "accepted": 16,
       "rejected": 0,
       "ok": true,
       "rejections": [],
@@ -185,22 +185,19 @@
         "BarChart",
         "Column",
         "DataTable",
-        "Grid",
-        "Heading",
         "ProgressBar",
         "Row",
         "Sparkline",
         "StatTile",
-        "Tab",
         "Tabs",
         "Text",
         "Timeline"
       ],
-      "component_count": 19
+      "component_count": 16
     },
     "data_model": {
       "title": "Population comparison \u2014 composed by the live graph",
-      "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population (City Proper) | Annual Growth Trend |\n| :--- | :--",
+      "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
       "kpi_cities": 3,
       "kpi_sources": 9,
       "kpi_research_nodes": 3,
@@ -208,7 +205,7 @@
       "population_bars": [
         {
           "label": "London",
-          "value": 9.138835
+          "value": 9.1882
         },
         {
           "label": "Berlin",
@@ -220,14 +217,14 @@
         }
       ],
       "spark": [
-        9.138835,
+        9.1882,
         3.775697,
         2.06
       ],
       "table_rows": [
         {
           "City": "London",
-          "Population_M": 9.138835,
+          "Population_M": 9.1882,
           "Sources": 3
         },
         {
@@ -242,11 +239,11 @@
         }
       ],
       "city_0_name": "London",
-      "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review:** Projects the 2026 population at approximately **9,188,200**, following an estimated 2025 population of 9,138,835.\n*   **Population Pie:** Cites Wikipedia data stating that the population of Greater London was **9.8 million** as of September 2025.\n\nFor official demographic data, the London",
+      "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
       "city_1_name": "Berlin",
-      "city_1_detail": "Based on the provided search evidence, the population of Berlin is estimated at 3,775,697 for 2026. The city has experienced an annual growth of 45,490 people, representing a 1.22% increase. Additionally, Berlin is noted as the most populous city in the European Union when measured by city-proper population.",
+      "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
       "city_2_name": "Paris",
-      "city_2_detail": "The current population of Paris is estimated to be approximately 2.04 to 2.06 million residents within the city proper. According to recent projections, the 2026 population is estimated at 2,059,821, reflecting a slight annual decline of about 0.7%. Additionally, the Paris metropolitan area has an estimated population of 13.2 million as of January 2026.",
+      "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
       "timeline_events": [
         {
           "time": "1",
@@ -270,7 +267,7 @@
         },
         {
           "time": "6",
-          "label": "task_succeeded search_1"
+          "label": "task_succeeded search_3"
         },
         {
           "time": "7",
@@ -278,7 +275,7 @@
         },
         {
           "time": "8",
-          "label": "task_succeeded search_3"
+          "label": "task_succeeded search_2"
         },
         {
           "time": "9",
@@ -286,7 +283,7 @@
         },
         {
           "time": "10",
-          "label": "task_succeeded search_2"
+          "label": "task_succeeded search_1"
         },
         {
           "time": "11",
@@ -313,40 +310,41 @@
       "progress_max": 5
     },
     "surface_accepted": {
-      "root": "root",
+      "root": "main",
       "components": [
         {
-          "id": "root",
+          "id": "main",
           "type": "Column",
           "children": [
-            "h",
-            "stats",
-            "charts",
-            "dt",
+            "title",
+            "kpi_row",
+            "charts_row",
+            "table",
             "tabs",
-            "prog",
-            "tl"
+            "progress",
+            "timeline"
           ]
         },
         {
-          "id": "h",
-          "type": "Heading",
+          "id": "title",
+          "type": "Text",
+          "variant": "heading",
           "text": {
             "$bind": "/title"
           }
         },
         {
-          "id": "stats",
-          "type": "Grid",
-          "cols": 3,
+          "id": "kpi_row",
+          "type": "Row",
+          "justify": "spaceAround",
           "children": [
-            "s1",
-            "s2",
-            "s3"
+            "kpi1",
+            "kpi2",
+            "kpi3"
           ]
         },
         {
-          "id": "s1",
+          "id": "kpi1",
           "type": "StatTile",
           "label": "Cities",
           "value": {
@@ -354,7 +352,7 @@
           }
         },
         {
-          "id": "s2",
+          "id": "kpi2",
           "type": "StatTile",
           "label": "Sources",
           "value": {
@@ -362,7 +360,7 @@
           }
         },
         {
-          "id": "s3",
+          "id": "kpi3",
           "type": "StatTile",
           "label": "Research Nodes",
           "value": {
@@ -370,17 +368,18 @@
           }
         },
         {
-          "id": "charts",
+          "id": "charts_row",
           "type": "Row",
+          "align": "center",
           "children": [
-            "bc",
-            "sp"
+            "bar_chart",
+            "sparkline"
           ]
         },
         {
-          "id": "bc",
+          "id": "bar_chart",
           "type": "BarChart",
-          "title": "Population",
+          "title": "Population (M)",
           "data": {
             "$bind": "/population_bars"
           },
@@ -388,14 +387,15 @@
           "yKey": "value"
         },
         {
-          "id": "sp",
+          "id": "sparkline",
           "type": "Sparkline",
           "data": {
             "$bind": "/spark"
-          }
+          },
+          "tone": "neutral"
         },
         {
-          "id": "dt",
+          "id": "table",
           "type": "DataTable",
           "columns": "City,Population_M,Sources",
           "rows": {
@@ -409,68 +409,48 @@
           "type": "Tabs",
           "labels": "London,Berlin,Paris",
           "children": [
-            "t1",
-            "t2",
-            "t3"
+            "p0",
+            "p1",
+            "p2"
           ]
         },
         {
-          "id": "t1",
-          "type": "Tab",
-          "label": "London",
-          "children": [
-            "t1_text"
-          ]
-        },
-        {
-          "id": "t1_text",
+          "id": "p0",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/city_0_detail"
           }
         },
         {
-          "id": "t2",
-          "type": "Tab",
-          "label": "Berlin",
-          "children": [
-            "t2_text"
-          ]
-        },
-        {
-          "id": "t2_text",
+          "id": "p1",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/city_1_detail"
           }
         },
         {
-          "id": "t3",
-          "type": "Tab",
-          "label": "Paris",
-          "children": [
-            "t3_text"
-          ]
-        },
-        {
-          "id": "t3_text",
+          "id": "p2",
           "type": "Text",
+          "variant": "body",
           "text": {
             "$bind": "/city_2_detail"
           }
         },
         {
-          "id": "prog",
+          "id": "progress",
           "type": "ProgressBar",
           "value": {
             "$bind": "/progress_value"
           },
-          "max": 5
+          "max": 5,
+          "tone": "neutral"
         },
         {
-          "id": "tl",
+          "id": "timeline",
           "type": "Timeline",
-          "title": "Run Timeline",
+          "title": "Process Timeline",
           "events": {
             "$bind": "/timeline_events"
           }
@@ -478,7 +458,7 @@
       ],
       "dataModel": {
         "title": "Population comparison \u2014 composed by the live graph",
-        "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population (City Proper) | Annual Growth Trend |\n| :--- | :--",
+        "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
         "kpi_cities": 3,
         "kpi_sources": 9,
         "kpi_research_nodes": 3,
@@ -486,7 +466,7 @@
         "population_bars": [
           {
             "label": "London",
-            "value": 9.138835
+            "value": 9.1882
           },
           {
             "label": "Berlin",
@@ -498,14 +478,14 @@
           }
         ],
         "spark": [
-          9.138835,
+          9.1882,
           3.775697,
           2.06
         ],
         "table_rows": [
           {
             "City": "London",
-            "Population_M": 9.138835,
+            "Population_M": 9.1882,
             "Sources": 3
           },
           {
@@ -520,11 +500,11 @@
           }
         ],
         "city_0_name": "London",
-        "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review:** Projects the 2026 population at approximately **9,188,200**, following an estimated 2025 population of 9,138,835.\n*   **Population Pie:** Cites Wikipedia data stating that the population of Greater London was **9.8 million** as of September 2025.\n\nFor official demographic data, the London",
+        "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
         "city_1_name": "Berlin",
-        "city_1_detail": "Based on the provided search evidence, the population of Berlin is estimated at 3,775,697 for 2026. The city has experienced an annual growth of 45,490 people, representing a 1.22% increase. Additionally, Berlin is noted as the most populous city in the European Union when measured by city-proper population.",
+        "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
         "city_2_name": "Paris",
-        "city_2_detail": "The current population of Paris is estimated to be approximately 2.04 to 2.06 million residents within the city proper. According to recent projections, the 2026 population is estimated at 2,059,821, reflecting a slight annual decline of about 0.7%. Additionally, the Paris metropolitan area has an estimated population of 13.2 million as of January 2026.",
+        "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
         "timeline_events": [
           {
             "time": "1",
@@ -548,7 +528,7 @@
           },
           {
             "time": "6",
-            "label": "task_succeeded search_1"
+            "label": "task_succeeded search_3"
           },
           {
             "time": "7",
@@ -556,7 +536,7 @@
           },
           {
             "time": "8",
-            "label": "task_succeeded search_3"
+            "label": "task_succeeded search_2"
           },
           {
             "time": "9",
@@ -564,7 +544,7 @@
           },
           {
             "time": "10",
-            "label": "task_succeeded search_2"
+            "label": "task_succeeded search_1"
           },
           {
             "time": "11",
@@ -648,50 +628,6 @@
     {
       "sequence": 6,
       "kind": "task_succeeded",
-      "node_id": "search_1",
-      "payload": {
-        "query": "current population of London",
-        "hits": [
-          {
-            "title": "London Population 2026",
-            "url": "https://worldpopulationreview.com/cities/united-kingdom/london",
-            "snippet": "worldpopulationreview.com/cities/united-kingdom/london London's 2026 population is now estimated at 9,188,200. In 2025, the population of London was 9,138,835. London has grown by 49,365 in the last year, which represents a 0.54% annual change.These population values and projections come from World Population Review Internal Projections."
-          },
-          {
-            "title": "Greater London Population 2025 (Updated)- Population Pie",
-            "url": "https://populationpie.co.uk/greater-london-population/",
-            "snippet": "populationpie.co.uk/greater-london-population/ As of September 2025, the Current Population of Greater London is 9.8 million according to Wikipedia."
-          },
-          {
-            "title": "London's Population | London Datastore",
-            "url": "https://data.london.gov.uk/dataset/londons-population-e6y30/",
-            "snippet": "data.london.gov.uk/dataset/londons-population-e6y30/ For information relating to London's population see the demography pages of the London Datastore: https://data. london .gov.uk/demography/ or email demography@london.gov.uk."
-          }
-        ],
-        "text": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review:** Projects the 2026 population at approximately **9,188,200**, following an estimated 2025 population of 9,138,835.\n*   **Population Pie:** Cites Wikipedia data stating that the population of Greater London was **9.8 million** as of September 2025.\n\nFor official demographic data, the London Datastore serves as the primary resource for population statistics.",
-        "provider": "gemini_1",
-        "model": "gemini-3.1-flash-lite",
-        "agent": "researcher"
-      }
-    },
-    {
-      "sequence": 7,
-      "kind": "graph_patched",
-      "node_id": null,
-      "payload": {
-        "trigger_event": 6,
-        "reason": "",
-        "add": [],
-        "connect": [],
-        "cancel": [],
-        "wait": [],
-        "resume": [],
-        "finish": false
-      }
-    },
-    {
-      "sequence": 8,
-      "kind": "task_succeeded",
       "node_id": "search_3",
       "payload": {
         "query": "current population of Paris",
@@ -707,24 +643,24 @@
             "snippet": "www.citypopulation.de/en/france/paris/paris/75056__paris/ Paris in Paris ( Paris ) Commune The population development of Paris as well as related information and services (weather, Wikipedia, Google, images)."
           },
           {
-            "title": "Paris - Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/Paris",
-            "snippet": "en.wikipedia.org/wiki/Paris Paris[a] is the capital and largest city of France, with an estimated city population of 2.04 million in an area of 105.4 km2 (40.7 sq mi), and a metropolitan population of 13.2 million as of January 2026. [4] Located on the river Seine in the centre of the \u00cele-de-France region, it is the largest metropolitan area and fourth-most populous city in the European Union (EU). Nicknamed the \"City ..."
+            "title": "Population of Paris (2025): Size & Demographics | Geography Worlds",
+            "url": "https://geographyworlds.com/blog/population-of-paris/",
+            "snippet": "geographyworlds.com/blog/population-of-paris/ Population of Paris in 2025 is 2.1 million city and 12.2 million metro. Explore arrondissements, density, demographics, and key facts."
           }
         ],
-        "text": "The current population of Paris is estimated to be approximately 2.04 to 2.06 million residents within the city proper. According to recent projections, the 2026 population is estimated at 2,059,821, reflecting a slight annual decline of about 0.7%. Additionally, the Paris metropolitan area has an estimated population of 13.2 million as of January 2026.",
-        "provider": "gemini_2",
+        "text": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
+        "provider": "gemini_1",
         "model": "gemini-3.1-flash-lite",
         "agent": "researcher"
       }
     },
     {
-      "sequence": 9,
+      "sequence": 7,
       "kind": "graph_patched",
       "node_id": null,
       "payload": {
-        "trigger_event": 8,
-        "reason": "",
+        "trigger_event": 6,
+        "reason": "holding distill until the corrected research evidence lands",
         "add": [],
         "connect": [],
         "cancel": [],
@@ -734,7 +670,7 @@
       }
     },
     {
-      "sequence": 10,
+      "sequence": 8,
       "kind": "task_succeeded",
       "node_id": "search_2",
       "payload": {
@@ -746,17 +682,61 @@
             "snippet": "worldpopulationreview.com/cities/germany/berlin Berlin's 2026 population is now estimated at 3,775,697. In 1990, the population of Berlin was 3,433,695. Berlin has grown by 45,490 in the last year, which represents a 1.22% annual change.These population values and projections come from Germany cities and communes over 10k via CityPopulation state pages and World Population Review Internal Projections."
           },
           {
+            "title": "Berlin by the Numbers: Exploring the City's Population Today",
+            "url": "https://berlinavenue.com/berlin-population/",
+            "snippet": "berlinavenue.com/berlin-population/ Discover the current population of Berlin , Germany. Get up-to-date statistics and key facts about the city's demographics in 2024."
+          },
+          {
             "title": "Berlin (Berlin, Berlin, Germany) - Population Statistics, Charts, Map ...",
             "url": "https://www.citypopulation.de/en/germany/berlin/11000/11000000__berlin/",
             "snippet": "www.citypopulation.de/en/germany/berlin/11000/11000000__berlin/ Berlin in Berlin ( Berlin ) County-level City The population development of Berlin as well as related information and services (weather, Wikipedia, Google, images)."
-          },
-          {
-            "title": "Berlin population statistics - Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/Berlin_population_statistics",
-            "snippet": "en.wikipedia.org/wiki/Berlin_population_statistics Berlin population statistics Berlin is the most populous city in the European Union, as calculated by city-proper population (not metropolitan area)."
           }
         ],
-        "text": "Based on the provided search evidence, the population of Berlin is estimated at 3,775,697 for 2026. The city has experienced an annual growth of 45,490 people, representing a 1.22% increase. Additionally, Berlin is noted as the most populous city in the European Union when measured by city-proper population.",
+        "text": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
+        "provider": "gemini_2",
+        "model": "gemini-3.1-flash-lite",
+        "agent": "researcher"
+      }
+    },
+    {
+      "sequence": 9,
+      "kind": "graph_patched",
+      "node_id": null,
+      "payload": {
+        "trigger_event": 8,
+        "reason": "holding distill until the corrected research evidence lands",
+        "add": [],
+        "connect": [],
+        "cancel": [],
+        "wait": [],
+        "resume": [],
+        "finish": false
+      }
+    },
+    {
+      "sequence": 10,
+      "kind": "task_succeeded",
+      "node_id": "search_1",
+      "payload": {
+        "query": "current population of London",
+        "hits": [
+          {
+            "title": "London Population 2026",
+            "url": "https://worldpopulationreview.com/cities/united-kingdom/london",
+            "snippet": "worldpopulationreview.com/cities/united-kingdom/london London's 2026 population is now estimated at 9,188,200. In 2025, the population of London was 9,138,835. London has grown by 49,365 in the last year, which represents a 0.54% annual change.These population values and projections come from World Population Review Internal Projections."
+          },
+          {
+            "title": "Greater London Population 2025 (Updated)- Population Pie",
+            "url": "https://populationpie.co.uk/greater-london-population/",
+            "snippet": "populationpie.co.uk/greater-london-population/ As of September 2025, the Current Population of Greater London is 9.8 million according to Wikipedia."
+          },
+          {
+            "title": "London Population 2026: Size, Growth & Key Facts",
+            "url": "https://thelondonreport.co.uk/london/london-population/",
+            "snippet": "thelondonreport.co.uk/london/london-population/ Discover London population in 2026, growth trends, borough data, and why the city continues to attract millions of residents worldwide."
+          }
+        ],
+        "text": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
         "provider": "gemini_3",
         "model": "gemini-3.1-flash-lite",
         "agent": "researcher"
@@ -768,7 +748,7 @@
       "node_id": null,
       "payload": {
         "trigger_event": 10,
-        "reason": "research evidence landed; specialist synthesis can begin",
+        "reason": "all corrected research evidence landed; specialist synthesis can begin",
         "add": [
           "distill"
         ],
@@ -806,7 +786,7 @@
       "kind": "task_succeeded",
       "node_id": "distill",
       "payload": {
-        "text": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population (City Proper) | Annual Growth Trend |\n| :--- | :--- | :--- |\n| **London** | 9.19M \u2013 9.8M | +0.54% (Growth) |\n| **Berlin** | 3.78M | +1.22% (Growth) |\n| **Paris** | 2.06M | -0.70% (Decline) |\n\n---\n\n#### Key Insights\n\n*   **London:** Remains the most populous of the three cities. Estimates vary between 9.19 million (World Population Review) and 9.8 million (Greater London/Wikipedia data), reflecting different methodologies in defining city boundaries.\n*   **Berlin:** Holds the position of the most populous city proper within the European Union, with a steady growth rate of 1.22%.\n*   **Paris:** While the city proper population is approximately 2.06 million and currently experiencing a slight decline, the Paris metropolitan area is significantly larger, with an estimated 13.2 million residents as of January 2026.\n\n***Note:** Population figures for city proper areas are based on 2026 projections. Variations in data may occur due to differences in municipal boundary definitions and statistical reporting agencies.*",
+        "text": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| **London** | 9.19M \u2013 9.8M | +0.54% (Growth) |\n| **Berlin** | 3.78M | +1.22% (Growth) |\n| **Paris** | 2.06M | -0.70% (Decline) |\n\n---\n\n#### Key Insights\n\n*   **London:** Remains the most populous city among the three. Estimates vary between ~9.2 million (World Population Review) and 9.8 million (Population Pie), reflecting differences in how \"Greater London\" boundaries are defined. The city continues to see steady growth.\n*   **Berlin:** Shows the highest relative growth rate of the three cities at 1.22%, with a current population of approximately 3.78 million.\n*   **Paris:** While the city proper has a smaller population of approximately 2.06 million and is currently experiencing a slight annual decline (-0.7%), it is important to note that the broader Paris metropolitan area is significantly larger, with an estimated population of 12.2 million.\n\n***Data Sources:** World Population Review, Population Pie, INSEE, and CityPopulation.de.*",
         "provider": "gemini_4",
         "model": "gemini-3.1-flash-lite",
         "agent": "distiller"
@@ -863,42 +843,43 @@
         "agent": "ui_composer",
         "provider": "gemini_3",
         "model": "gemini-3.1-flash-lite",
-        "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"stats\",\"charts\",\"dt\",\"tabs\",\"prog\",\"tl\"]},{\"id\":\"h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"stats\",\"type\":\"Grid\",\"cols\":3,\"children\":[\"s1\",\"s2\",\"s3\"]},{\"id\":\"s1\",\"type\":\"StatTile\",\"label\":\"Cities\",\"value\":{\"$bind\":\"/kpi_cities\"}},{\"id\":\"s2\",\"type\":\"StatTile\",\"label\":\"Sources\",\"value\":{\"$bind\":\"/kpi_sources\"}},{\"id\":\"s3\",\"type\":\"StatTile\",\"label\":\"Research Nodes\",\"value\":{\"$bind\":\"/kpi_research_nodes\"}},{\"id\":\"charts\",\"type\":\"Row\",\"children\":[\"bc\",\"sp\"]},{\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Population\",\"data\":{\"$bind\":\"/population_bars\"},\"xKey\":\"label\",\"yKey\":\"value\"},{\"id\":\"sp\",\"type\":\"Sparkline\",\"data\":{\"$bind\":\"/spark\"}},{\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"City,Population_M,Sources\",\"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"City\"},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"London,Berlin,Paris\",\"children\":[\"t1\",\"t2\",\"t3\"]},{\"id\":\"t1\",\"type\":\"Tab\",\"label\":\"London\",\"children\":[\"t1_text\"]},{\"id\":\"t1_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_0_detail\"}},{\"id\":\"t2\",\"type\":\"Tab\",\"label\":\"Berlin\",\"children\":[\"t2_text\"]},{\"id\":\"t2_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_1_detail\"}},{\"id\":\"t3\",\"type\":\"Tab\",\"label\":\"Paris\",\"children\":[\"t3_text\"]},{\"id\":\"t3_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_2_detail\"}},{\"id\":\"prog\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":5},{\"id\":\"tl\",\"type\":\"Timeline\",\"title\":\"Run Timeline\",\"events\":{\"$bind\":\"/timeline_events\"}}]}",
+        "raw_surface": "{\n  \"root\": \"main\",\n  \"components\": [\n    {\n      \"id\": \"main\",\n      \"type\": \"Column\",\n      \"children\": [\n        \"title\",\n        \"kpi_row\",\n        \"charts_row\",\n        \"table\",\n        \"tabs\",\n        \"progress\",\n        \"timeline\"\n      ]\n    },\n    {\n      \"id\": \"title\",\n      \"type\": \"Text\",\n      \"variant\": \"heading\",\n      \"text\": {\n        \"$bind\": \"/title\"\n      }\n    },\n    {\n      \"id\": \"kpi_row\",\n      \"type\": \"Row\",\n      \"justify\": \"spaceAround\",\n      \"children\": [\n        \"kpi1\",\n        \"kpi2\",\n        \"kpi3\"\n      ]\n    },\n    {\n      \"id\": \"kpi1\",\n      \"type\": \"StatTile\",\n      \"label\": \"Cities\",\n      \"value\": {\n        \"$bind\": \"/kpi_cities\"\n      }\n    },\n    {\n      \"id\": \"kpi2\",\n      \"type\": \"StatTile\",\n      \"label\": \"Sources\",\n      \"value\": {\n        \"$bind\": \"/kpi_sources\"\n      }\n    },\n    {\n      \"id\": \"kpi3\",\n      \"type\": \"StatTile\",\n      \"label\": \"Research Nodes\",\n      \"value\": {\n        \"$bind\": \"/kpi_research_nodes\"\n      }\n    },\n    {\n      \"id\": \"charts_row\",\n      \"type\": \"Row\",\n      \"align\": \"center\",\n      \"children\": [\n        \"bar_chart\",\n        \"sparkline\"\n      ]\n    },\n    {\n      \"id\": \"bar_chart\",\n      \"type\": \"BarChart\",\n      \"title\": \"Population (M)\",\n      \"data\": {\n        \"$bind\": \"/population_bars\"\n      },\n      \"xKey\": \"label\",\n      \"yKey\": \"value\"\n    },\n    {\n      \"id\": \"sparkline\",\n      \"type\": \"Sparkline\",\n      \"data\": {\n        \"$bind\": \"/spark\"\n      },\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"table\",\n      \"type\": \"DataTable\",\n      \"columns\": \"City,Population_M,Sources\",\n      \"rows\": {\n        \"$bind\": \"/table_rows\"\n      },\n      \"sortable\": true,\n      \"filterKey\": \"City\"\n    },\n    {\n      \"id\": \"tabs\",\n      \"type\": \"Tabs\",\n      \"labels\": \"London,Berlin,Paris\",\n      \"children\": [\n        \"p0\",\n        \"p1\",\n        \"p2\"\n      ]\n    },\n    {\n      \"id\": \"p0\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_0_detail\"\n      }\n    },\n    {\n      \"id\": \"p1\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_1_detail\"\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_2_detail\"\n      }\n    },\n    {\n      \"id\": \"progress\",\n      \"type\": \"ProgressBar\",\n      \"value\": {\n        \"$bind\": \"/progress_value\"\n      },\n      \"max\": 5,\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"timeline\",\n      \"type\": \"Timeline\",\n      \"title\": \"Process Timeline\",\n      \"events\": {\n        \"$bind\": \"/timeline_events\"\n      }\n    }\n  ]\n}",
         "surface": {
-          "root": "root",
+          "root": "main",
           "components": [
             {
-              "id": "root",
+              "id": "main",
               "type": "Column",
               "children": [
-                "h",
-                "stats",
-                "charts",
-                "dt",
+                "title",
+                "kpi_row",
+                "charts_row",
+                "table",
                 "tabs",
-                "prog",
-                "tl"
+                "progress",
+                "timeline"
               ]
             },
             {
-              "id": "h",
-              "type": "Heading",
+              "id": "title",
+              "type": "Text",
+              "variant": "heading",
               "text": {
                 "$bind": "/title"
               }
             },
             {
-              "id": "stats",
-              "type": "Grid",
-              "cols": 3,
+              "id": "kpi_row",
+              "type": "Row",
+              "justify": "spaceAround",
               "children": [
-                "s1",
-                "s2",
-                "s3"
+                "kpi1",
+                "kpi2",
+                "kpi3"
               ]
             },
             {
-              "id": "s1",
+              "id": "kpi1",
               "type": "StatTile",
               "label": "Cities",
               "value": {
@@ -906,7 +887,7 @@
               }
             },
             {
-              "id": "s2",
+              "id": "kpi2",
               "type": "StatTile",
               "label": "Sources",
               "value": {
@@ -914,7 +895,7 @@
               }
             },
             {
-              "id": "s3",
+              "id": "kpi3",
               "type": "StatTile",
               "label": "Research Nodes",
               "value": {
@@ -922,17 +903,18 @@
               }
             },
             {
-              "id": "charts",
+              "id": "charts_row",
               "type": "Row",
+              "align": "center",
               "children": [
-                "bc",
-                "sp"
+                "bar_chart",
+                "sparkline"
               ]
             },
             {
-              "id": "bc",
+              "id": "bar_chart",
               "type": "BarChart",
-              "title": "Population",
+              "title": "Population (M)",
               "data": {
                 "$bind": "/population_bars"
               },
@@ -940,14 +922,15 @@
               "yKey": "value"
             },
             {
-              "id": "sp",
+              "id": "sparkline",
               "type": "Sparkline",
               "data": {
                 "$bind": "/spark"
-              }
+              },
+              "tone": "neutral"
             },
             {
-              "id": "dt",
+              "id": "table",
               "type": "DataTable",
               "columns": "City,Population_M,Sources",
               "rows": {
@@ -961,68 +944,48 @@
               "type": "Tabs",
               "labels": "London,Berlin,Paris",
               "children": [
-                "t1",
-                "t2",
-                "t3"
+                "p0",
+                "p1",
+                "p2"
               ]
             },
             {
-              "id": "t1",
-              "type": "Tab",
-              "label": "London",
-              "children": [
-                "t1_text"
-              ]
-            },
-            {
-              "id": "t1_text",
+              "id": "p0",
               "type": "Text",
+              "variant": "body",
               "text": {
                 "$bind": "/city_0_detail"
               }
             },
             {
-              "id": "t2",
-              "type": "Tab",
-              "label": "Berlin",
-              "children": [
-                "t2_text"
-              ]
-            },
-            {
-              "id": "t2_text",
+              "id": "p1",
               "type": "Text",
+              "variant": "body",
               "text": {
                 "$bind": "/city_1_detail"
               }
             },
             {
-              "id": "t3",
-              "type": "Tab",
-              "label": "Paris",
-              "children": [
-                "t3_text"
-              ]
-            },
-            {
-              "id": "t3_text",
+              "id": "p2",
               "type": "Text",
+              "variant": "body",
               "text": {
                 "$bind": "/city_2_detail"
               }
             },
             {
-              "id": "prog",
+              "id": "progress",
               "type": "ProgressBar",
               "value": {
                 "$bind": "/progress_value"
               },
-              "max": 5
+              "max": 5,
+              "tone": "neutral"
             },
             {
-              "id": "tl",
+              "id": "timeline",
               "type": "Timeline",
-              "title": "Run Timeline",
+              "title": "Process Timeline",
               "events": {
                 "$bind": "/timeline_events"
               }
@@ -1030,7 +993,7 @@
           ],
           "dataModel": {
             "title": "Population comparison \u2014 composed by the live graph",
-            "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population (City Proper) | Annual Growth Trend |\n| :--- | :--",
+            "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
             "kpi_cities": 3,
             "kpi_sources": 9,
             "kpi_research_nodes": 3,
@@ -1038,7 +1001,7 @@
             "population_bars": [
               {
                 "label": "London",
-                "value": 9.138835
+                "value": 9.1882
               },
               {
                 "label": "Berlin",
@@ -1050,14 +1013,14 @@
               }
             ],
             "spark": [
-              9.138835,
+              9.1882,
               3.775697,
               2.06
             ],
             "table_rows": [
               {
                 "City": "London",
-                "Population_M": 9.138835,
+                "Population_M": 9.1882,
                 "Sources": 3
               },
               {
@@ -1072,11 +1035,11 @@
               }
             ],
             "city_0_name": "London",
-            "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review:** Projects the 2026 population at approximately **9,188,200**, following an estimated 2025 population of 9,138,835.\n*   **Population Pie:** Cites Wikipedia data stating that the population of Greater London was **9.8 million** as of September 2025.\n\nFor official demographic data, the London",
+            "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
             "city_1_name": "Berlin",
-            "city_1_detail": "Based on the provided search evidence, the population of Berlin is estimated at 3,775,697 for 2026. The city has experienced an annual growth of 45,490 people, representing a 1.22% increase. Additionally, Berlin is noted as the most populous city in the European Union when measured by city-proper population.",
+            "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
             "city_2_name": "Paris",
-            "city_2_detail": "The current population of Paris is estimated to be approximately 2.04 to 2.06 million residents within the city proper. According to recent projections, the 2026 population is estimated at 2,059,821, reflecting a slight annual decline of about 0.7%. Additionally, the Paris metropolitan area has an estimated population of 13.2 million as of January 2026.",
+            "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
             "timeline_events": [
               {
                 "time": "1",
@@ -1100,7 +1063,7 @@
               },
               {
                 "time": "6",
-                "label": "task_succeeded search_1"
+                "label": "task_succeeded search_3"
               },
               {
                 "time": "7",
@@ -1108,7 +1071,7 @@
               },
               {
                 "time": "8",
-                "label": "task_succeeded search_3"
+                "label": "task_succeeded search_2"
               },
               {
                 "time": "9",
@@ -1116,7 +1079,7 @@
               },
               {
                 "time": "10",
-                "label": "task_succeeded search_2"
+                "label": "task_succeeded search_1"
               },
               {
                 "time": "11",
@@ -1145,7 +1108,7 @@
         },
         "data_model": {
           "title": "Population comparison \u2014 composed by the live graph",
-          "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population (City Proper) | Annual Growth Trend |\n| :--- | :--",
+          "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
           "kpi_cities": 3,
           "kpi_sources": 9,
           "kpi_research_nodes": 3,
@@ -1153,7 +1116,7 @@
           "population_bars": [
             {
               "label": "London",
-              "value": 9.138835
+              "value": 9.1882
             },
             {
               "label": "Berlin",
@@ -1165,14 +1128,14 @@
             }
           ],
           "spark": [
-            9.138835,
+            9.1882,
             3.775697,
             2.06
           ],
           "table_rows": [
             {
               "City": "London",
-              "Population_M": 9.138835,
+              "Population_M": 9.1882,
               "Sources": 3
             },
             {
@@ -1187,11 +1150,11 @@
             }
           ],
           "city_0_name": "London",
-          "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review:** Projects the 2026 population at approximately **9,188,200**, following an estimated 2025 population of 9,138,835.\n*   **Population Pie:** Cites Wikipedia data stating that the population of Greater London was **9.8 million** as of September 2025.\n\nFor official demographic data, the London",
+          "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
           "city_1_name": "Berlin",
-          "city_1_detail": "Based on the provided search evidence, the population of Berlin is estimated at 3,775,697 for 2026. The city has experienced an annual growth of 45,490 people, representing a 1.22% increase. Additionally, Berlin is noted as the most populous city in the European Union when measured by city-proper population.",
+          "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
           "city_2_name": "Paris",
-          "city_2_detail": "The current population of Paris is estimated to be approximately 2.04 to 2.06 million residents within the city proper. According to recent projections, the 2026 population is estimated at 2,059,821, reflecting a slight annual decline of about 0.7%. Additionally, the Paris metropolitan area has an estimated population of 13.2 million as of January 2026.",
+          "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
           "timeline_events": [
             {
               "time": "1",
@@ -1215,7 +1178,7 @@
             },
             {
               "time": "6",
-              "label": "task_succeeded search_1"
+              "label": "task_succeeded search_3"
             },
             {
               "time": "7",
@@ -1223,7 +1186,7 @@
             },
             {
               "time": "8",
-              "label": "task_succeeded search_3"
+              "label": "task_succeeded search_2"
             },
             {
               "time": "9",
@@ -1231,7 +1194,7 @@
             },
             {
               "time": "10",
-              "label": "task_succeeded search_2"
+              "label": "task_succeeded search_1"
             },
             {
               "time": "11",
@@ -1258,8 +1221,8 @@
           "progress_max": 5
         },
         "validator": {
-          "proposed": 19,
-          "accepted": 19,
+          "proposed": 16,
+          "accepted": 16,
           "rejected": 0,
           "ok": true,
           "rejections": [],
@@ -1268,18 +1231,15 @@
             "BarChart",
             "Column",
             "DataTable",
-            "Grid",
-            "Heading",
             "ProgressBar",
             "Row",
             "Sparkline",
             "StatTile",
-            "Tab",
             "Tabs",
             "Text",
             "Timeline"
           ],
-          "component_count": 19
+          "component_count": 16
         },
         "upstream_used": [
           "London",
