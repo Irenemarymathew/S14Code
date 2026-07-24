@@ -194,8 +194,43 @@ async def action(body: ActionBody):
     return {"resumed": True, "node_id": body.node_id, "reason": decision.reason}
 
 
+@router.get("/v1/runs/{run_id}/composed")
+async def composed(run_id: str, request: Request):
+    """The interface the agent COMPOSED for this run (the compose_surface node's
+    output), re-validated. Distinct from /surface, which is the run's progress
+    view. This is what a UI-only app renders."""
+    run = _read_run(request, run_id)
+    node = run["nodes"].get("surface") or {}
+    res = node.get("result") or {}
+    surf = res.get("surface") or {}
+    if not surf.get("components"):
+        raise HTTPException(404, "run has no composed interface (no compose_surface node)")
+    result = validate_surface(surf)
+    return {
+        "run_id": run_id,
+        "finished": run["finished"],
+        "surface": {"root": surf.get("root"), "components": result.accepted,
+                    "dataModel": res.get("data_model") or surf.get("dataModel") or {}},
+        "component_count": len(result.accepted),
+        "clean": result.ok,
+        "provider": res.get("provider"),
+        "model": res.get("model"),
+    }
+
+
 @router.get("/s/{run_id}", response_class=HTMLResponse)
 async def client(run_id: str):
     if not _CLIENT.exists():
         raise HTTPException(500, "render client missing")
     return _CLIENT.read_text().replace("__RUN_ID__", run_id)
+
+
+@router.get("/app", response_class=HTMLResponse)
+@router.get("/app/", response_class=HTMLResponse)
+async def app_viewer():
+    """A bare-minimal UI-only app shell: it starts a run, renders the composed
+    interface, and turns a tap into the next turn. The protocol does the work."""
+    path = Path(__file__).parent / "client" / "app.html"
+    if not path.exists():
+        raise HTTPException(500, "app viewer missing")
+    return path.read_text()

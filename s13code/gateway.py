@@ -25,8 +25,9 @@ class GatewayClient:
         }
         # "gemini" is a logical gateway provider. GLC expands it to the
         # independently metered gemini_1..N key pool; S13Code never sees keys.
-        if provider := os.getenv("S13_GATEWAY_PROVIDER"):
-            payload["provider"] = provider
+        # Default to gemini so an unset env never falls through to the gateway's
+        # default provider order (which may put a heavy local model first).
+        payload["provider"] = os.getenv("S13_GATEWAY_PROVIDER", "gemini")
         response = await self._client.post(f"{self.base_url}/v1/chat", json=payload)
         if response.status_code >= 400:
             raise RuntimeError(f"GLC /v1/chat returned {response.status_code}: {response.text[:500]}")

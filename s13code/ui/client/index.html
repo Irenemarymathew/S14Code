@@ -59,6 +59,8 @@
   .prog{height:12px;border-radius:999px;background:var(--surface-alt);border:1px solid var(--rule);overflow:hidden}
   .prog>i{display:block;height:100%;background:var(--green)}
   @media (prefers-color-scheme:dark){:root{--bg:#0d0f14;--surface:#161922;--surface-alt:#11131a;--ink:#f3f5f9;--ink-body:#e4e8f0;--ink-muted:#9aa4b8;--rule:#252a36;--rule-strong:#333a49}body{background:var(--surface-alt)}}
+
+  .Text .md-h{font-weight:700;color:var(--ink);margin:12px 0 4px}.Text .md-p{margin:6px 0;line-height:1.6}.Text .md-ul{margin:6px 0 6px 4px;padding-left:18px}.Text .md-ul li{margin:3px 0}
 </style>
 </head>
 <body>
@@ -80,6 +82,9 @@ const $ = (t, cls) => { const e = document.createElement(t); if (cls) e.classNam
 const text = (t) => document.createTextNode(t == null ? "" : String(t));
 
 function resolve(v, dm){ return (v && typeof v === "object" && "$bind" in v) ? pointer(dm, v["$bind"]) : v; }
+// safe markdown -> DOM (createElement + text nodes only; never raw HTML)
+function mdInline(line,parent){const re=/(\*\*([^*]+)\*\*|\*([^*]+)\*|_([^_]+)_)/g;let last=0,m;while((m=re.exec(line))){if(m.index>last)parent.append(text(line.slice(last,m.index)));if(m[2]!=null){const s=document.createElement("strong");s.textContent=m[2];parent.append(s);}else{const e=document.createElement("em");e.textContent=(m[3]!=null?m[3]:m[4]);parent.append(e);}last=re.lastIndex;}if(last<line.length)parent.append(text(line.slice(last)));}
+function md(t){const f=document.createDocumentFragment();let ul=null;for(const raw of String(t==null?"":t).split(/\r?\n/)){const line=raw.trim();if(!line){ul=null;continue;}const h=line.match(/^(#{1,4})\s+(.*)/),b=line.match(/^[*\-]\s+(.*)/);if(h){ul=null;const d=$("div","md-h");mdInline(h[2],d);f.append(d);}else if(b){if(!ul){ul=document.createElement("ul");ul.className="md-ul";f.append(ul);}const li=document.createElement("li");mdInline(b[1],li);ul.append(li);}else{ul=null;const p=$("div","md-p");mdInline(line,p);f.append(p);}}return f;}
 function pointer(dm, ptr){ let cur = dm; for(const seg of ptr.split("/").slice(1)){ if(cur==null) return null; cur = cur[seg]; } return cur; }
 // Two-way inputs write ONLY into the local data model — never back to the agent.
 function setPointer(dm, ptr, val){ const segs=ptr.split("/").slice(1); let cur=dm; for(let i=0;i<segs.length-1;i++){ if(cur[segs[i]]==null) cur[segs[i]]={}; cur=cur[segs[i]]; } if(segs.length) cur[segs[segs.length-1]]=val; }
@@ -97,7 +102,7 @@ const RENDERERS = {
   Row:(c,ctx)=>{const e=$("div","Row");if(c.align)e.style.alignItems=ALIGN[c.align]||"center";if(c.justify)e.style.justifyContent=JUSTIFY[c.justify]||"space-between";kids(c,ctx,e);return e;},
   Card:(c,ctx)=>{const e=$("div","Card");if(c.title){const h=$("div");h.style.cssText="font-weight:600;margin-bottom:8px";h.append(text(c.title));e.append(h);}kids(c,ctx,e);return e;},
   Divider:()=>$("div","Divider"),
-  Text:(c,ctx)=>{const e=$("div","Text "+(c.variant||"body"));e.append(text(resolve(c.text,ctx.dm)));return e;}, // textNode: never markup
+  Text:(c,ctx)=>{const e=$("div","Text "+(c.variant||"body"));const v=resolve(c.text,ctx.dm);(c.variant||"body")==="heading"?e.append(text(v)):e.append(md(v));return e;}, // heading = literal; body = safe markdown DOM
   Image:(c)=>{const e=$("img");const src=c.src;if(isSafeUrl(src))e.setAttribute("src",src);e.setAttribute("alt",c.alt==null?"":String(c.alt));e.style.cssText="max-width:100%;border-radius:8px";return e;},
   TextField:(c,ctx)=>field(c,()=>{const i=$("input");i.type="text";i.value=resolve(c.value,ctx.dm)??"";if(c.placeholder)i.placeholder=c.placeholder;
     i.oninput=()=>{if(c.value&&c.value.$bind)setPointer(ctx.dm,c.value.$bind,i.value);};return i;}),

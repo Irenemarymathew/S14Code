@@ -32,7 +32,7 @@ class ResumeDecision:
 
 
 def _canonical(value):
-    """Order-independent canonical form for structural comparison."""
+    """Order-independent canonical form for structural equality checks."""
     if isinstance(value, dict):
         return tuple(sorted((k, _canonical(v)) for k, v in value.items()))
     if isinstance(value, (list, tuple)):

@@ -1,51 +1,59 @@
 {
-  "task": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
-  "self_correct_city": "Berlin",
-  "run_id": "run-23bc6c0a6ff9",
+  "task": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+  "self_correct_subject": "Berlin",
+  "run_id": "run-d64923359447",
   "status": "completed",
   "gateway_base_url": "http://127.0.0.1:8111",
   "gateway_provider_env": "gemini",
   "before_after": {
-    "target_city": "Berlin",
+    "target_subject": "Berlin",
     "original_node": "search_2",
-    "before_population_millions": null,
+    "before_weak_evidence": true,
     "retry_node": "research_berlin_retry",
-    "after_population_millions": 5.8
+    "after_weak_evidence": false
   },
   "research_readings": {
     "research_berlin_retry": {
       "subject": "Berlin",
-      "query": "Berlin metropolitan area population 2026 worldpopulationreview.com",
+      "query": "detailed factual overview of Berlin \u2014 key figures and sources",
       "corrective_for": "search_2",
       "state": "succeeded",
-      "population_millions_seen_by_planner": 5.8
+      "weak_evidence_seen_by_planner": false,
+      "has_text": true,
+      "hit_count": 3
     },
     "search_1": {
       "subject": "London",
-      "query": "current population of London",
+      "query": "Research the profiles of and then London",
       "corrective_for": null,
       "state": "succeeded",
-      "population_millions_seen_by_planner": 9.8
+      "weak_evidence_seen_by_planner": false,
+      "has_text": true,
+      "hit_count": 3
     },
     "search_2": {
       "subject": "Berlin",
-      "query": "current population of Berlin",
+      "query": "Research the profiles of and then Berlin",
       "corrective_for": null,
       "state": "succeeded",
-      "population_millions_seen_by_planner": null
+      "weak_evidence_seen_by_planner": true,
+      "has_text": false,
+      "hit_count": 0
     },
     "search_3": {
       "subject": "Paris",
-      "query": "current population of Paris",
+      "query": "Research the profiles of and then Paris",
       "corrective_for": null,
       "state": "succeeded",
-      "population_millions_seen_by_planner": 2.059821
+      "weak_evidence_seen_by_planner": false,
+      "has_text": true,
+      "hit_count": 3
     }
   },
   "corrective_patches": [
     {
-      "sequence": 11,
-      "reason": "weak evidence for Berlin (population_millions=None); an outcome must earn the next node \u2014 adding corrective re-research before distill",
+      "sequence": 7,
+      "reason": "weak evidence for Berlin; an outcome must earn the next node \u2014 adding corrective re-research before distill",
       "add": [
         "research_berlin_retry"
       ],
@@ -102,15 +110,15 @@
         "distill"
       ],
       [
+        "research_berlin_retry",
+        "surface"
+      ],
+      [
         "search_1",
         "distill"
       ],
       [
         "search_1",
-        "surface"
-      ],
-      [
-        "search_2",
         "surface"
       ],
       [
@@ -152,7 +160,7 @@
     {
       "sequence": 6,
       "kind": "task_succeeded",
-      "node_id": "search_3"
+      "node_id": "search_2"
     },
     {
       "sequence": 7,
@@ -161,28 +169,28 @@
     },
     {
       "sequence": 8,
+      "kind": "task_started",
+      "node_id": "research_berlin_retry"
+    },
+    {
+      "sequence": 9,
+      "kind": "task_succeeded",
+      "node_id": "search_3"
+    },
+    {
+      "sequence": 10,
+      "kind": "graph_patched",
+      "node_id": null
+    },
+    {
+      "sequence": 11,
       "kind": "task_succeeded",
       "node_id": "search_1"
     },
     {
-      "sequence": 9,
-      "kind": "graph_patched",
-      "node_id": null
-    },
-    {
-      "sequence": 10,
-      "kind": "task_succeeded",
-      "node_id": "search_2"
-    },
-    {
-      "sequence": 11,
-      "kind": "graph_patched",
-      "node_id": null
-    },
-    {
       "sequence": 12,
-      "kind": "task_started",
-      "node_id": "research_berlin_retry"
+      "kind": "graph_patched",
+      "node_id": null
     },
     {
       "sequence": 13,
@@ -229,7 +237,7 @@
     "id": "surface",
     "skill": "compose_surface",
     "state": "succeeded",
-    "provider": "gemini_4",
+    "provider": "gemini_1",
     "model": "gemini-3.1-flash-lite",
     "upstream_used": [
       "Berlin",
@@ -238,61 +246,53 @@
     ],
     "parse_ok": true,
     "validator": {
-      "proposed": 19,
-      "accepted": 19,
+      "proposed": 15,
+      "accepted": 15,
       "rejected": 0,
       "ok": true,
       "rejections": [],
       "dangling_child_refs": [],
       "component_types": [
-        "BarChart",
+        "Card",
         "Column",
-        "DataTable",
-        "Grid",
-        "Heading",
         "ProgressBar",
         "Row",
-        "Sparkline",
         "StatTile",
-        "Tab",
         "Tabs",
         "Text",
         "Timeline"
       ],
-      "component_count": 19
+      "component_count": 15
     },
-    "population_bars": [
+    "results": [
       {
         "label": "Berlin",
-        "value": 3.775697
+        "detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s"
       },
       {
         "label": "London",
-        "value": 9.1882
+        "detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro"
       },
       {
         "label": "Paris",
-        "value": 2.06
+        "detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its"
       }
     ],
     "table_rows": [
       {
-        "City": "Berlin",
-        "Population_M": 3.775697,
+        "Item": "Berlin",
         "Sources": 3
       },
       {
-        "City": "London",
-        "Population_M": 9.1882,
+        "Item": "London",
         "Sources": 3
       },
       {
-        "City": "Paris",
-        "Population_M": 2.06,
+        "Item": "Paris",
         "Sources": 3
       }
     ],
-    "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"stats\",\"charts\",\"dt\",\"tabs\",\"pb\",\"tl\"]},{\"id\":\"h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"stats\",\"type\":\"Grid\",\"cols\":3,\"children\":[\"s1\",\"s2\",\"s3\"]},{\"id\":\"s1\",\"type\":\"StatTile\",\"label\":\"Cities\",\"value\":{\"$bind\":\"/kpi_cities\"}},{\"id\":\"s2\",\"type\":\"StatTile\",\"label\":\"Sources\",\"value\":{\"$bind\":\"/kpi_sources\"}},{\"id\":\"s3\",\"type\":\"StatTile\",\"label\":\"Research Nodes\",\"value\":{\"$bind\":\"/kpi_research_nodes\"}},{\"id\":\"charts\",\"type\":\"Row\",\"children\":[\"bc\",\"sp\"]},{\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Population\",\"data\":{\"$bind\":\"/population_bars\"},\"xKey\":\"label\",\"yKey\":\"value\",\"unit\":\"M\"},{\"id\":\"sp\",\"type\":\"Sparkline\",\"data\":{\"$bind\":\"/spark\"},\"tone\":\"neutral\"},{\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"City,Population_M,Sources\",\"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"City\"},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"Berlin,London,Paris\",\"children\":[\"t1\",\"t2\",\"t3\"]},{\"id\":\"t1\",\"type\":\"Tab\",\"label\":\"Berlin\",\"children\":[\"t1_text\"]},{\"id\":\"t1_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_0_detail\"}},{\"id\":\"t2\",\"type\":\"Tab\",\"label\":\"London\",\"children\":[\"t2_text\"]},{\"id\":\"t2_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_1_detail\"}},{\"id\":\"t3\",\"type\":\"Tab\",\"label\":\"Paris\",\"children\":[\"t3_text\"]},{\"id\":\"t3_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_2_detail\"}},{\"id\":\"pb\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":6,\"tone\":\"good\"},{\"id\":\"tl\",\"type\":\"Timeline\",\"title\":\"Run History\",\"events\":{\"$bind\":\"/timeline_events\"}}]}",
+    "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"title\",\"summary\",\"stats\",\"tabs\",\"progress\",\"timeline\"]},{\"id\":\"title\",\"type\":\"Text\",\"variant\":\"heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"summary\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/summary\"}},{\"id\":\"stats\",\"type\":\"Row\",\"align\":\"center\",\"justify\":\"spaceAround\",\"children\":[\"count\",\"sources\"]},{\"id\":\"count\",\"type\":\"StatTile\",\"label\":\"Cities Researched\",\"value\":{\"$bind\":\"/item_count\"},\"unit\":\"cities\",\"tone\":\"neutral\"},{\"id\":\"sources\",\"type\":\"StatTile\",\"label\":\"Total Sources\",\"value\":{\"$bind\":\"/source_count\"},\"unit\":\"sources\",\"tone\":\"neutral\"},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"Berlin,London,Paris\",\"children\":[\"berlin_panel\",\"london_panel\",\"paris_panel\"]},{\"id\":\"berlin_panel\",\"type\":\"Card\",\"title\":\"Berlin\",\"children\":[\"berlin_text\"]},{\"id\":\"berlin_text\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_0_detail\"}},{\"id\":\"london_panel\",\"type\":\"Card\",\"title\":\"London\",\"children\":[\"london_text\"]},{\"id\":\"london_text\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_1_detail\"}},{\"id\":\"paris_panel\",\"type\":\"Card\",\"title\":\"Paris\",\"children\":[\"paris_text\"]},{\"id\":\"paris_text\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_2_detail\"}},{\"id\":\"progress\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":6,\"tone\":\"good\"},{\"id\":\"timeline\",\"type\":\"Timeline\",\"title\":\"Research Progress\",\"events\":{\"$bind\":\"/timeline\"}}]}",
     "surface_accepted": {
       "root": "root",
       "components": [
@@ -300,150 +300,120 @@
           "id": "root",
           "type": "Column",
           "children": [
-            "h",
+            "title",
+            "summary",
             "stats",
-            "charts",
-            "dt",
             "tabs",
-            "pb",
-            "tl"
+            "progress",
+            "timeline"
           ]
         },
         {
-          "id": "h",
-          "type": "Heading",
+          "id": "title",
+          "type": "Text",
+          "variant": "heading",
           "text": {
             "$bind": "/title"
           }
         },
         {
+          "id": "summary",
+          "type": "Text",
+          "variant": "body",
+          "text": {
+            "$bind": "/summary"
+          }
+        },
+        {
           "id": "stats",
-          "type": "Grid",
-          "cols": 3,
-          "children": [
-            "s1",
-            "s2",
-            "s3"
-          ]
-        },
-        {
-          "id": "s1",
-          "type": "StatTile",
-          "label": "Cities",
-          "value": {
-            "$bind": "/kpi_cities"
-          }
-        },
-        {
-          "id": "s2",
-          "type": "StatTile",
-          "label": "Sources",
-          "value": {
-            "$bind": "/kpi_sources"
-          }
-        },
-        {
-          "id": "s3",
-          "type": "StatTile",
-          "label": "Research Nodes",
-          "value": {
-            "$bind": "/kpi_research_nodes"
-          }
-        },
-        {
-          "id": "charts",
           "type": "Row",
+          "align": "center",
+          "justify": "spaceAround",
           "children": [
-            "bc",
-            "sp"
+            "count",
+            "sources"
           ]
         },
         {
-          "id": "bc",
-          "type": "BarChart",
-          "title": "Population",
-          "data": {
-            "$bind": "/population_bars"
+          "id": "count",
+          "type": "StatTile",
+          "label": "Cities Researched",
+          "value": {
+            "$bind": "/item_count"
           },
-          "xKey": "label",
-          "yKey": "value",
-          "unit": "M"
-        },
-        {
-          "id": "sp",
-          "type": "Sparkline",
-          "data": {
-            "$bind": "/spark"
-          },
+          "unit": "cities",
           "tone": "neutral"
         },
         {
-          "id": "dt",
-          "type": "DataTable",
-          "columns": "City,Population_M,Sources",
-          "rows": {
-            "$bind": "/table_rows"
+          "id": "sources",
+          "type": "StatTile",
+          "label": "Total Sources",
+          "value": {
+            "$bind": "/source_count"
           },
-          "sortable": true,
-          "filterKey": "City"
+          "unit": "sources",
+          "tone": "neutral"
         },
         {
           "id": "tabs",
           "type": "Tabs",
           "labels": "Berlin,London,Paris",
           "children": [
-            "t1",
-            "t2",
-            "t3"
+            "berlin_panel",
+            "london_panel",
+            "paris_panel"
           ]
         },
         {
-          "id": "t1",
-          "type": "Tab",
-          "label": "Berlin",
+          "id": "berlin_panel",
+          "type": "Card",
+          "title": "Berlin",
           "children": [
-            "t1_text"
+            "berlin_text"
           ]
         },
         {
-          "id": "t1_text",
+          "id": "berlin_text",
           "type": "Text",
+          "variant": "body",
           "text": {
-            "$bind": "/city_0_detail"
+            "$bind": "/item_0_detail"
           }
         },
         {
-          "id": "t2",
-          "type": "Tab",
-          "label": "London",
+          "id": "london_panel",
+          "type": "Card",
+          "title": "London",
           "children": [
-            "t2_text"
+            "london_text"
           ]
         },
         {
-          "id": "t2_text",
+          "id": "london_text",
           "type": "Text",
+          "variant": "body",
           "text": {
-            "$bind": "/city_1_detail"
+            "$bind": "/item_1_detail"
           }
         },
         {
-          "id": "t3",
-          "type": "Tab",
-          "label": "Paris",
+          "id": "paris_panel",
+          "type": "Card",
+          "title": "Paris",
           "children": [
-            "t3_text"
+            "paris_text"
           ]
         },
         {
-          "id": "t3_text",
+          "id": "paris_text",
           "type": "Text",
+          "variant": "body",
           "text": {
-            "$bind": "/city_2_detail"
+            "$bind": "/item_2_detail"
           }
         },
         {
-          "id": "pb",
+          "id": "progress",
           "type": "ProgressBar",
           "value": {
             "$bind": "/progress_value"
@@ -452,64 +422,90 @@
           "tone": "good"
         },
         {
-          "id": "tl",
+          "id": "timeline",
           "type": "Timeline",
-          "title": "Run History",
+          "title": "Research Progress",
           "events": {
-            "$bind": "/timeline_events"
+            "$bind": "/timeline"
           }
         }
       ],
       "dataModel": {
-        "title": "Population comparison \u2014 composed by the live graph",
-        "subtitle": "### European Cities Population Comparison Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on current 2026 projections.\n\n| City | Primary Population Estimate | Context / Notes |\n| :--- | :-",
-        "kpi_cities": 3,
-        "kpi_sources": 9,
-        "kpi_research_nodes": 3,
-        "largest_city": "London",
-        "population_bars": [
+        "title": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+        "goal": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+        "summary": "### **European Capitals Comparison Dashboard**\n\nThis dashboard provides a comparative overview of London, Berlin, and Paris based on their historical development, cultural significance, and urban evolution.\n\n| Feature | **London** | **Berlin** | **Paris** |\n| :--- | :--- | :--- | :--- |\n| **Primary Status** | Capital of the UK; historic metropolis. | Capital of Germany; political/economic hub. | Capital of France; global cultural center. |\n| **Geographic Context** | Situated on the River Thames. | Located on the North German Plain. | Situated along the Seine River. |\n| **Historical Focus** | Social history, civic governance, and urban life (1600s\u20131800s). | Prussian history, 20th-century conflict, and reunification. | Medieval religious/commercial center; Gothic architecture. |\n| **Key Development** | Evolved through trade, social policy, and industrialization. | Rose from a medieval trading post to a unified imperial capital. | Rapid industrial expansion (1850\u20131930); intellectual hub. |\n| **Cultural Identity** | Defined by its diverse social strata and historical topography. | Defined by its resilience and pivotal role in modern history. | Defined by gastronomy, haute couture, art, and literature. |\n\n---\n\n### **City Profiles**\n\n#### **London**\n*   **Profile:** A city defined by its long-standing social and civic evolution.\n*   **Research Highlights:** Historical research focuses on the lives of its inhabitants across centuries, utilizing archaeological and documentary evidence to track shifts in poverty, crime, and social policy from the medieval period through the 18th century.\n\n#### **Berlin**\n*   **Profile:** A city shaped by its central role in the political shifts of the 19th and 20th centuries.\n*   **Research Highlights:** Berlin\u2019s narrative is anchored in its transition from the capital of Prussia to the center of 20th-century global events, including the World Wars, the Cold War division, and the eventual reunification of Germany.\n\n#### **Paris**\n*   **Profi",
+        "results": [
           {
             "label": "Berlin",
-            "value": 3.775697
+            "detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s"
           },
           {
             "label": "London",
-            "value": 9.1882
+            "detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro"
           },
           {
             "label": "Paris",
-            "value": 2.06
+            "detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its"
+          }
+        ],
+        "items": [
+          {
+            "label": "Berlin"
+          },
+          {
+            "label": "London"
+          },
+          {
+            "label": "Paris"
+          }
+        ],
+        "metrics": [
+          {
+            "label": "Berlin",
+            "value": 3
+          },
+          {
+            "label": "London",
+            "value": 3
+          },
+          {
+            "label": "Paris",
+            "value": 3
           }
         ],
         "spark": [
-          3.775697,
-          9.1882,
-          2.06
+          3.0,
+          3.0,
+          3.0
         ],
         "table_rows": [
           {
-            "City": "Berlin",
-            "Population_M": 3.775697,
+            "Item": "Berlin",
             "Sources": 3
           },
           {
-            "City": "London",
-            "Population_M": 9.1882,
+            "Item": "London",
             "Sources": 3
           },
           {
-            "City": "Paris",
-            "Population_M": 2.06,
+            "Item": "Paris",
             "Sources": 3
           }
         ],
-        "city_0_name": "Berlin",
-        "city_0_detail": "According to the provided search results, the population figures for the Berlin area in 2026 are as follows:\n\n*   **Berlin-Brandenburg Metropolitan Region:** World Population Review reports a population of approximately **5.8 million** people.\n*   **Berlin Urban Area/City:** World Population Review estimates the urban area population at approximately **3.7 million**, with a specific city populatio",
-        "city_1_name": "London",
-        "city_1_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-        "city_2_name": "Paris",
-        "city_2_detail": "The current population of Paris is estimated at 2,059,821 for 2026. This figure reflects a recent annual decline of approximately 0.7%, or 14,549 residents. Historical data indicates a downward trend from the 2,181,371 residents recorded in 2006.",
-        "timeline_events": [
+        "item_count": 3,
+        "source_count": 9,
+        "item_0_label": "Berlin",
+        "item_0_detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s",
+        "item_1_label": "London",
+        "item_1_detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro",
+        "item_2_label": "Paris",
+        "item_2_detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its",
+        "subjects": [
+          "Berlin",
+          "London",
+          "Paris"
+        ],
+        "timeline": [
           {
             "time": "1",
             "label": "run_started"
@@ -532,7 +528,7 @@
           },
           {
             "time": "6",
-            "label": "task_succeeded search_3"
+            "label": "task_succeeded search_2"
           },
           {
             "time": "7",
@@ -540,23 +536,23 @@
           },
           {
             "time": "8",
-            "label": "task_succeeded search_1"
+            "label": "task_started research_berlin_retry"
           },
           {
             "time": "9",
-            "label": "graph_patched"
+            "label": "task_succeeded search_3"
           },
           {
             "time": "10",
-            "label": "task_succeeded search_2"
-          },
-          {
-            "time": "11",
             "label": "graph_patched"
           },
           {
+            "time": "11",
+            "label": "task_succeeded search_1"
+          },
+          {
             "time": "12",
-            "label": "task_started research_berlin_retry"
+            "label": "graph_patched"
           },
           {
             "time": "13",
@@ -601,7 +597,7 @@
       "node_id": null,
       "payload": {
         "trigger_event": 1,
-        "reason": "first frontier selected for compose_dashboard",
+        "reason": "first frontier selected for compose_research",
         "add": [
           "search_1",
           "search_2",
@@ -644,30 +640,15 @@
     {
       "sequence": 6,
       "kind": "task_succeeded",
-      "node_id": "search_3",
+      "node_id": "search_2",
       "payload": {
-        "query": "current population of Paris",
-        "hits": [
-          {
-            "title": "Paris Population 2026",
-            "url": "https://worldpopulationreview.com/cities/france/paris",
-            "snippet": "worldpopulationreview.com/cities/france/paris Paris's 2026 population is now estimated at 2,059,821. In 2006, the population of Paris was 2,181,371. Paris experienced a decrease of -14,549 residents over the past year, marking an annual decline of -0.7%.These population values and projections come from INSEE historical municipal populations (PMUN) by commune and World Population Review Internal Projections."
-          },
-          {
-            "title": "Paris (Paris, Paris, France) - Population Statistics, Charts, Map ...",
-            "url": "https://www.citypopulation.de/en/france/paris/paris/75056__paris/",
-            "snippet": "www.citypopulation.de/en/france/paris/paris/75056__paris/ Paris in Paris ( Paris ) Commune The population development of Paris as well as related information and services (weather, Wikipedia, Google, images)."
-          },
-          {
-            "title": "Demographics of Paris - Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/Demographics_of_Paris",
-            "snippet": "en.wikipedia.org/wiki/Demographics_of_Paris Paris population pyramid in 2022 According to Eurostat, the EU statistical agency, in 2012 the Commune of Paris was the most densely populated city in the European Union, with 21,616 people per square kilometre within the city limits (the NUTS-3 statistical area), ahead of Inner London West, which had 10,374 persons per square kilometre. According to the same census, three departments ..."
-          }
-        ],
-        "text": "The current population of Paris is estimated at 2,059,821 for 2026. This figure reflects a recent annual decline of approximately 0.7%, or 14,549 residents. Historical data indicates a downward trend from the 2,181,371 residents recorded in 2006.",
-        "provider": "gemini_3",
-        "model": "gemini-3.1-flash-lite",
-        "agent": "researcher"
+        "query": "Research the profiles of and then Berlin",
+        "hits": [],
+        "text": "",
+        "provider": null,
+        "model": null,
+        "agent": "researcher",
+        "insufficient": true
       }
     },
     {
@@ -676,95 +657,7 @@
       "node_id": null,
       "payload": {
         "trigger_event": 6,
-        "reason": "holding distill until the corrected research evidence lands",
-        "add": [],
-        "connect": [],
-        "cancel": [],
-        "wait": [],
-        "resume": [],
-        "finish": false
-      }
-    },
-    {
-      "sequence": 8,
-      "kind": "task_succeeded",
-      "node_id": "search_1",
-      "payload": {
-        "query": "current population of London",
-        "hits": [
-          {
-            "title": "London Population 2026",
-            "url": "https://worldpopulationreview.com/cities/united-kingdom/london",
-            "snippet": "worldpopulationreview.com/cities/united-kingdom/london London's 2026 population is now estimated at 9,188,200. In 2025, the population of London was 9,138,835. London has grown by 49,365 in the last year, which represents a 0.54% annual change.These population values and projections come from World Population Review Internal Projections."
-          },
-          {
-            "title": "Greater London Population 2025 (Updated)- Population Pie",
-            "url": "https://populationpie.co.uk/greater-london-population/",
-            "snippet": "populationpie.co.uk/greater-london-population/ As of September 2025, the Current Population of Greater London is 9.8 million according to Wikipedia."
-          },
-          {
-            "title": "London Population 2026: Size, Growth & Key Facts",
-            "url": "https://thelondonreport.co.uk/london/london-population/",
-            "snippet": "thelondonreport.co.uk/london/london-population/ Discover London population in 2026, growth trends, borough data, and why the city continues to attract millions of residents worldwide."
-          }
-        ],
-        "text": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-        "provider": "gemini_2",
-        "model": "gemini-3.1-flash-lite",
-        "agent": "researcher"
-      }
-    },
-    {
-      "sequence": 9,
-      "kind": "graph_patched",
-      "node_id": null,
-      "payload": {
-        "trigger_event": 8,
-        "reason": "holding distill until the corrected research evidence lands",
-        "add": [],
-        "connect": [],
-        "cancel": [],
-        "wait": [],
-        "resume": [],
-        "finish": false
-      }
-    },
-    {
-      "sequence": 10,
-      "kind": "task_succeeded",
-      "node_id": "search_2",
-      "payload": {
-        "query": "Berlin history and famous landmarks",
-        "hits": [
-          {
-            "title": " Famous Berlin Landmarks (Don't Miss Them) - Delve Into Europe",
-            "url": "https://delveintoeurope.com/berlin-landmarks/",
-            "snippet": "delveintoeurope.com/berlin-landmarks/ Wondering what the most famous Berlin landmarks are ? This article shows you  amazing landmarks in Berlin with stunning photos & full details. Take a look !"
-          },
-          {
-            "title": " Historic Places to See in Berlin | Historical Landmarks | History Hit",
-            "url": "https://www.historyhit.com/guides/what-to-see-in-berlin/",
-            "snippet": "www.historyhit.com/guides/what-to-see-in-berlin/ An expert guide to the top tourist attractions in Berlin , from world famous sites to forgotten hidden gems. Includes top ten places to visit, interactive map, site guide and entry info."
-          },
-          {
-            "title": "Top  landmarks in Berlin - places to visit in Berlin - visitBerlin",
-            "url": "https://www.visitberlin.de/en/berlins-top-10-attractions",
-            "snippet": "www.visitberlin.de/en/berlins-top--attractions Berlin's world- famous Museum Island is a UNESCO World Heritage Site. Five major museums showcase more than  years of art and cultural history : the Altes Museum, the Neues Museum, the Alte Nationalgalerie, the Bode Museum and the Pergamon Museum, which is set to reopen in "
-          }
-        ],
-        "text": "Berlin is a city defined by its rich cultural and historical significance, offering a variety of landmarks that span centuries of development. Key highlights include:\n\n*   **Museum Island:** A UNESCO World Heritage Site that serves as a cornerstone of Berlin\u2019s cultural history. It houses five major institutions\u2014the Altes Museum, Neues Museum, Alte Nationalgalerie, Bode Museum, and the Pergamon Museum\u2014which collectively showcase thousands of years of art and history.\n*   **Historical Diversity:** The city features a wide range of historical sites, from world-famous landmarks to lesser-known \"hidden gems,\" providing visitors with comprehensive insights into Berlin's past.\n*   **Tourism Resources:** Berlin offers extensive guides and interactive maps to help navigate its top attractions, ensuring that both iconic sites and historical points of interest are accessible to the public.",
-        "provider": "gemini_1",
-        "model": "gemini-3.1-flash-lite",
-        "agent": "researcher"
-      }
-    },
-    {
-      "sequence": 11,
-      "kind": "graph_patched",
-      "node_id": null,
-      "payload": {
-        "trigger_event": 10,
-        "reason": "weak evidence for Berlin (population_millions=None); an outcome must earn the next node \u2014 adding corrective re-research before distill",
+        "reason": "weak evidence for Berlin; an outcome must earn the next node \u2014 adding corrective re-research before distill",
         "add": [
           "research_berlin_retry"
         ],
@@ -776,7 +669,7 @@
       }
     },
     {
-      "sequence": 12,
+      "sequence": 8,
       "kind": "task_started",
       "node_id": "research_berlin_retry",
       "payload": {
@@ -785,30 +678,118 @@
       }
     },
     {
+      "sequence": 9,
+      "kind": "task_succeeded",
+      "node_id": "search_3",
+      "payload": {
+        "query": "Research the profiles of and then Paris",
+        "hits": [
+          {
+            "title": "Paris - Culture, Art, Romance | Britannica",
+            "url": "https://www.britannica.com/place/Paris/People",
+            "snippet": "www.britannica.com/place/Paris/People Paris - Culture, Art, Romance: In 1850 Paris had approximately 600,000 inhabitants. It then grew rapidly as industrial expansion attracted a constant stream of people from the provinces. By 1870 the population had surpassed 1,000,000, and by 1931 the conurbation contained some 5,000,000 people, more than half of them living in the city of Paris , the administrative city within the old gates ..."
+          },
+          {
+            "title": "History of Paris - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/History_of_Paris",
+            "snippet": "en.wikipedia.org/wiki/History_of_Paris During the Middle Ages, Paris was the largest city in Europe, an important religious and commercial centre, and the birthplace of the Gothic style of architecture. The University of Paris on the Left Bank, organised in the mid-13th century, was one of the first in Europe."
+          },
+          {
+            "title": "Paris | Definition, Map, Population, Facts, & History | Britannica",
+            "url": "https://www.britannica.com/place/Paris",
+            "snippet": "www.britannica.com/place/Paris Paris , city and capital of France, located along the Seine River, in the north-central part of the country. Paris is one of the world's most important and attractive cities, famed for its gastronomy, haute couture, painting, literature, and intellectual community. Learn more about Paris in this article."
+          }
+        ],
+        "text": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its population grew from approximately 600,000 in 1850 to over 1,000,000 by 1870. By 1931, the conurbation reached roughly 5,000,000 inhabitants, with more than half residing within the city's administrative boundaries.",
+        "provider": "gemini_1",
+        "model": "gemini-3.1-flash-lite",
+        "agent": "researcher"
+      }
+    },
+    {
+      "sequence": 10,
+      "kind": "graph_patched",
+      "node_id": null,
+      "payload": {
+        "trigger_event": 9,
+        "reason": "holding distill until the corrected research evidence lands",
+        "add": [],
+        "connect": [],
+        "cancel": [],
+        "wait": [],
+        "resume": [],
+        "finish": false
+      }
+    },
+    {
+      "sequence": 11,
+      "kind": "task_succeeded",
+      "node_id": "search_1",
+      "payload": {
+        "query": "Research the profiles of and then London",
+        "hits": [
+          {
+            "title": "Medieval Londoners - Fordham University",
+            "url": "https://medievallondoners.ace.fordham.edu/",
+            "snippet": "medievallondoners.ace.fordham.edu This website introduces resources available for research about medieval London and its people, focusing not only on documentary and narrative sources in print, but also archaeological, visual, and cartographic sources that illuminate the physical and material world inhabited by medieval Londoners. An important component of the website is the Medieval Londoners Database (MLD), which records the ..."
+          },
+          {
+            "title": "PDF",
+            "url": "https://eprints.bbk.ac.uk/id/eprint/52479/1/Kent S Final Thesis.pdf",
+            "snippet": "Popular History in Early Modern London: The Role of History in the ... eprints.bbk.ac.uk/id/eprint/52479/1/Kent S Final Thesis.pdf The elements of history most popular in early modern London were initially identified using ballads and almanacs, the cheapest, most numerous forms of print in the city. These sources suggest that London's topography, civic government and famous figures from the city's past were the topics Londoners were most interested in and frequently encountered. These topics appeared not only in ..."
+          },
+          {
+            "title": "London Lives",
+            "url": "https://www.londonlives.org/",
+            "snippet": "www.londonlives.org London Lives, 1690 to 1800 Crime, Poverty and Social Policy in the Metropolis"
+          }
+        ],
+        "text": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural profiles of early modern Londoners often relies on popular print media, such as ballads and almanacs. These sources indicate that residents were particularly engaged with the city\u2019s topography, civic governance, and historical figures.\n*   **18th-Century London (1690\u20131800):** The *London Lives* project focuses on the social history of the metropolis during this period, specifically examining the lives of individuals through the lenses of crime, poverty, and social policy.",
+        "provider": "gemini_2",
+        "model": "gemini-3.1-flash-lite",
+        "agent": "researcher"
+      }
+    },
+    {
+      "sequence": 12,
+      "kind": "graph_patched",
+      "node_id": null,
+      "payload": {
+        "trigger_event": 11,
+        "reason": "holding distill until the corrected research evidence lands",
+        "add": [],
+        "connect": [],
+        "cancel": [],
+        "wait": [],
+        "resume": [],
+        "finish": false
+      }
+    },
+    {
       "sequence": 13,
       "kind": "task_succeeded",
       "node_id": "research_berlin_retry",
       "payload": {
-        "query": "Berlin metropolitan area population 2026 worldpopulationreview.com",
+        "query": "detailed factual overview of Berlin \u2014 key figures and sources",
         "hits": [
           {
-            "title": "Berlin Population 2026 - World Population Review",
-            "url": "https://worldpopulationreview.com/cities/germany/berlin",
-            "snippet": "worldpopulationreview.com/cities/germany/berlin The city is the center of the Berlin -Brandenburg Metropolitan Region with a population of 5.8 million people from more than 180 countries. The Berlin urban area goes beyond the city limits with a population of approximately 3.7 million."
+            "title": "Berlin | History, Map, Population, Attractions, & Facts | Britannica",
+            "url": "https://www.britannica.com/place/Berlin",
+            "snippet": "www.britannica.com/place/Berlin Berlin is the capital and chief urban center of Germany. The city lies at the heart of the North German Plain, athwart an east-west commercial and geographic axis that helped make it the capital of the kingdom of Prussia and then, from 1871, of a unified Germany."
           },
           {
-            "title": "Germany Cities by Population 2026",
-            "url": "https://worldpopulationreview.com/cities/germany",
-            "snippet": "worldpopulationreview.com/cities/germany Germany Overview The largest city in Germany is Berlin , with a population of 3,775,697 people. Germany 's mix of history, culture, industry and beautiful natural scenery have led to rapid growth during the years and one of the largest populations in the world."
+            "title": "History of Berlin - Berlin.de",
+            "url": "https://www.berlin.de/en/history/",
+            "snippet": "www.berlin.de/en/history/ History of the city of Berlin : eras, history of the districts, museums and monuments, National Socialism and the Berlin Wall."
           },
           {
-            "title": "Berlin, Germany Metro Area Population (1950-2026) - Macrotrends",
-            "url": "https://www.macrotrends.net/global-metrics/cities/204296/berlin/population",
-            "snippet": "www.macrotrends.net/global-metrics/cities/204296/berlin/population The current metro area population of Berlin in 2026 is 3,584,000, a 0.11% increase from 2025. The metro area population of Berlin in 2025 was 3,580,000, a 0.08% increase from 2024."
+            "title": "The Rich History of Berlin: Origins to Modern Day",
+            "url": "https://worldhistoryjournal.com/2025/05/21/history-of-berlin/",
+            "snippet": "worldhistoryjournal.com/2025/05/21/history-of-berlin/ Introduction Berlin , the capital of Germany, is a city rich in history and cultural significance. From its humble medieval beginnings as a trading settlement to its rise as the capital of Prussia, Berlin has been at the center of many pivotal moments in European history. The city's 20th-century narrative is particularly dramatic, encompassing two world wars, the rise and fall of the Berlin ..."
           }
         ],
-        "text": "According to the provided search results, the population figures for the Berlin area in 2026 are as follows:\n\n*   **Berlin-Brandenburg Metropolitan Region:** World Population Review reports a population of approximately **5.8 million** people.\n*   **Berlin Urban Area/City:** World Population Review estimates the urban area population at approximately **3.7 million**, with a specific city population figure of **3,775,697**.\n*   **Macrotrends Metro Area Estimate:** Macrotrends provides a distinct estimate for the Berlin metro area population in 2026 of **3,584,000**.",
-        "provider": "gemini_4",
+        "text": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin served as the capital of the Kingdom of Prussia and became the capital of a unified Germany in 1871.\n*   **20th-Century Narrative:** The city is defined by its central role in pivotal 20th-century events, including:\n    *   The impact of two World Wars.\n    *   The era of National Socialism.\n    *   The division and eventual fall of the Berlin Wall.\n\n### **Key Sources**\n*   **Britannica:** Provides foundational facts regarding the city's geography, status as a capital, and historical trajectory from Prussia to modern Germany.\n*   **Berlin.de:** Serves as an official resource for the city\u2019s history, covering specific eras, district histories, and information on museums and monuments.\n*   **World History Journal:** Offers a narrative overview of Berlin\u2019s evolution from its medieval origins to its modern-day cultural and historical significance.",
+        "provider": "gemini_3",
         "model": "gemini-3.1-flash-lite",
         "agent": "researcher"
       }
@@ -819,7 +800,7 @@
       "node_id": null,
       "payload": {
         "trigger_event": 13,
-        "reason": "all corrected research evidence landed; specialist synthesis can begin",
+        "reason": "all corrected research evidence landed; synthesis can begin",
         "add": [
           "distill"
         ],
@@ -857,8 +838,8 @@
       "kind": "task_succeeded",
       "node_id": "distill",
       "payload": {
-        "text": "### European Cities Population Comparison Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on current 2026 projections.\n\n| City | Primary Population Estimate | Context / Notes |\n| :--- | :--- | :--- |\n| **London** | ~9.19 million | Estimates range from 9.19M to 9.8M depending on the definition of Greater London. |\n| **Berlin** | ~3.78 million | City population is ~3.78M; the broader Berlin-Brandenburg Metropolitan Region reaches ~5.8M. |\n| **Paris** | ~2.06 million | Represents the commune population; currently experiencing a slight annual decline (-0.7%). |\n\n***\n\n#### Key Insights\n\n*   **London** remains the most populous of the three cities by a significant margin, with a growth rate of approximately 0.54% over the last year.\n*   **Berlin** serves as a major metropolitan hub, with its regional population (5.8 million) significantly exceeding its city-proper population (3.78 million).\n*   **Paris** maintains the highest population density among the three, though it has seen a gradual downward trend in its municipal population since 2006.\n\n*Note: Population figures are based on 2026 projections from sources including World Population Review, Macrotrends, and regional statistical data. Variations in figures often arise from differences in how \"city limits\" versus \"metropolitan areas\" are defined.*",
-        "provider": "gemini_5",
+        "text": "### **European Capitals Comparison Dashboard**\n\nThis dashboard provides a comparative overview of London, Berlin, and Paris based on their historical development, cultural significance, and urban evolution.\n\n| Feature | **London** | **Berlin** | **Paris** |\n| :--- | :--- | :--- | :--- |\n| **Primary Status** | Capital of the UK; historic metropolis. | Capital of Germany; political/economic hub. | Capital of France; global cultural center. |\n| **Geographic Context** | Situated on the River Thames. | Located on the North German Plain. | Situated along the Seine River. |\n| **Historical Focus** | Social history, civic governance, and urban life (1600s\u20131800s). | Prussian history, 20th-century conflict, and reunification. | Medieval religious/commercial center; Gothic architecture. |\n| **Key Development** | Evolved through trade, social policy, and industrialization. | Rose from a medieval trading post to a unified imperial capital. | Rapid industrial expansion (1850\u20131930); intellectual hub. |\n| **Cultural Identity** | Defined by its diverse social strata and historical topography. | Defined by its resilience and pivotal role in modern history. | Defined by gastronomy, haute couture, art, and literature. |\n\n---\n\n### **City Profiles**\n\n#### **London**\n*   **Profile:** A city defined by its long-standing social and civic evolution.\n*   **Research Highlights:** Historical research focuses on the lives of its inhabitants across centuries, utilizing archaeological and documentary evidence to track shifts in poverty, crime, and social policy from the medieval period through the 18th century.\n\n#### **Berlin**\n*   **Profile:** A city shaped by its central role in the political shifts of the 19th and 20th centuries.\n*   **Research Highlights:** Berlin\u2019s narrative is anchored in its transition from the capital of Prussia to the center of 20th-century global events, including the World Wars, the Cold War division, and the eventual reunification of Germany.\n\n#### **Paris**\n*   **Profile:** A global center for intellectual and artistic life, situated on the Seine.\n*   **Research Highlights:** Paris is noted for its medieval prominence as a religious and commercial hub and the birthplace of Gothic architecture. It experienced massive population growth during the industrial era, evolving into a modern metropolis of over 5 million people by the early 20th century.",
+        "provider": "gemini_4",
         "model": "gemini-3.1-flash-lite",
         "agent": "distiller"
       }
@@ -875,11 +856,11 @@
         ],
         "connect": [
           [
-            "search_1",
+            "research_berlin_retry",
             "surface"
           ],
           [
-            "search_2",
+            "search_1",
             "surface"
           ],
           [
@@ -912,9 +893,9 @@
       "node_id": "surface",
       "payload": {
         "agent": "ui_composer",
-        "provider": "gemini_4",
+        "provider": "gemini_1",
         "model": "gemini-3.1-flash-lite",
-        "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"h\",\"stats\",\"charts\",\"dt\",\"tabs\",\"pb\",\"tl\"]},{\"id\":\"h\",\"type\":\"Heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"stats\",\"type\":\"Grid\",\"cols\":3,\"children\":[\"s1\",\"s2\",\"s3\"]},{\"id\":\"s1\",\"type\":\"StatTile\",\"label\":\"Cities\",\"value\":{\"$bind\":\"/kpi_cities\"}},{\"id\":\"s2\",\"type\":\"StatTile\",\"label\":\"Sources\",\"value\":{\"$bind\":\"/kpi_sources\"}},{\"id\":\"s3\",\"type\":\"StatTile\",\"label\":\"Research Nodes\",\"value\":{\"$bind\":\"/kpi_research_nodes\"}},{\"id\":\"charts\",\"type\":\"Row\",\"children\":[\"bc\",\"sp\"]},{\"id\":\"bc\",\"type\":\"BarChart\",\"title\":\"Population\",\"data\":{\"$bind\":\"/population_bars\"},\"xKey\":\"label\",\"yKey\":\"value\",\"unit\":\"M\"},{\"id\":\"sp\",\"type\":\"Sparkline\",\"data\":{\"$bind\":\"/spark\"},\"tone\":\"neutral\"},{\"id\":\"dt\",\"type\":\"DataTable\",\"columns\":\"City,Population_M,Sources\",\"rows\":{\"$bind\":\"/table_rows\"},\"sortable\":true,\"filterKey\":\"City\"},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"Berlin,London,Paris\",\"children\":[\"t1\",\"t2\",\"t3\"]},{\"id\":\"t1\",\"type\":\"Tab\",\"label\":\"Berlin\",\"children\":[\"t1_text\"]},{\"id\":\"t1_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_0_detail\"}},{\"id\":\"t2\",\"type\":\"Tab\",\"label\":\"London\",\"children\":[\"t2_text\"]},{\"id\":\"t2_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_1_detail\"}},{\"id\":\"t3\",\"type\":\"Tab\",\"label\":\"Paris\",\"children\":[\"t3_text\"]},{\"id\":\"t3_text\",\"type\":\"Text\",\"text\":{\"$bind\":\"/city_2_detail\"}},{\"id\":\"pb\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":6,\"tone\":\"good\"},{\"id\":\"tl\",\"type\":\"Timeline\",\"title\":\"Run History\",\"events\":{\"$bind\":\"/timeline_events\"}}]}",
+        "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"title\",\"summary\",\"stats\",\"tabs\",\"progress\",\"timeline\"]},{\"id\":\"title\",\"type\":\"Text\",\"variant\":\"heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"summary\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/summary\"}},{\"id\":\"stats\",\"type\":\"Row\",\"align\":\"center\",\"justify\":\"spaceAround\",\"children\":[\"count\",\"sources\"]},{\"id\":\"count\",\"type\":\"StatTile\",\"label\":\"Cities Researched\",\"value\":{\"$bind\":\"/item_count\"},\"unit\":\"cities\",\"tone\":\"neutral\"},{\"id\":\"sources\",\"type\":\"StatTile\",\"label\":\"Total Sources\",\"value\":{\"$bind\":\"/source_count\"},\"unit\":\"sources\",\"tone\":\"neutral\"},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"Berlin,London,Paris\",\"children\":[\"berlin_panel\",\"london_panel\",\"paris_panel\"]},{\"id\":\"berlin_panel\",\"type\":\"Card\",\"title\":\"Berlin\",\"children\":[\"berlin_text\"]},{\"id\":\"berlin_text\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_0_detail\"}},{\"id\":\"london_panel\",\"type\":\"Card\",\"title\":\"London\",\"children\":[\"london_text\"]},{\"id\":\"london_text\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_1_detail\"}},{\"id\":\"paris_panel\",\"type\":\"Card\",\"title\":\"Paris\",\"children\":[\"paris_text\"]},{\"id\":\"paris_text\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_2_detail\"}},{\"id\":\"progress\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":6,\"tone\":\"good\"},{\"id\":\"timeline\",\"type\":\"Timeline\",\"title\":\"Research Progress\",\"events\":{\"$bind\":\"/timeline\"}}]}",
         "surface": {
           "root": "root",
           "components": [
@@ -922,150 +903,120 @@
               "id": "root",
               "type": "Column",
               "children": [
-                "h",
+                "title",
+                "summary",
                 "stats",
-                "charts",
-                "dt",
                 "tabs",
-                "pb",
-                "tl"
+                "progress",
+                "timeline"
               ]
             },
             {
-              "id": "h",
-              "type": "Heading",
+              "id": "title",
+              "type": "Text",
+              "variant": "heading",
               "text": {
                 "$bind": "/title"
               }
             },
             {
+              "id": "summary",
+              "type": "Text",
+              "variant": "body",
+              "text": {
+                "$bind": "/summary"
+              }
+            },
+            {
               "id": "stats",
-              "type": "Grid",
-              "cols": 3,
-              "children": [
-                "s1",
-                "s2",
-                "s3"
-              ]
-            },
-            {
-              "id": "s1",
-              "type": "StatTile",
-              "label": "Cities",
-              "value": {
-                "$bind": "/kpi_cities"
-              }
-            },
-            {
-              "id": "s2",
-              "type": "StatTile",
-              "label": "Sources",
-              "value": {
-                "$bind": "/kpi_sources"
-              }
-            },
-            {
-              "id": "s3",
-              "type": "StatTile",
-              "label": "Research Nodes",
-              "value": {
-                "$bind": "/kpi_research_nodes"
-              }
-            },
-            {
-              "id": "charts",
               "type": "Row",
+              "align": "center",
+              "justify": "spaceAround",
               "children": [
-                "bc",
-                "sp"
+                "count",
+                "sources"
               ]
             },
             {
-              "id": "bc",
-              "type": "BarChart",
-              "title": "Population",
-              "data": {
-                "$bind": "/population_bars"
+              "id": "count",
+              "type": "StatTile",
+              "label": "Cities Researched",
+              "value": {
+                "$bind": "/item_count"
               },
-              "xKey": "label",
-              "yKey": "value",
-              "unit": "M"
-            },
-            {
-              "id": "sp",
-              "type": "Sparkline",
-              "data": {
-                "$bind": "/spark"
-              },
+              "unit": "cities",
               "tone": "neutral"
             },
             {
-              "id": "dt",
-              "type": "DataTable",
-              "columns": "City,Population_M,Sources",
-              "rows": {
-                "$bind": "/table_rows"
+              "id": "sources",
+              "type": "StatTile",
+              "label": "Total Sources",
+              "value": {
+                "$bind": "/source_count"
               },
-              "sortable": true,
-              "filterKey": "City"
+              "unit": "sources",
+              "tone": "neutral"
             },
             {
               "id": "tabs",
               "type": "Tabs",
               "labels": "Berlin,London,Paris",
               "children": [
-                "t1",
-                "t2",
-                "t3"
+                "berlin_panel",
+                "london_panel",
+                "paris_panel"
               ]
             },
             {
-              "id": "t1",
-              "type": "Tab",
-              "label": "Berlin",
+              "id": "berlin_panel",
+              "type": "Card",
+              "title": "Berlin",
               "children": [
-                "t1_text"
+                "berlin_text"
               ]
             },
             {
-              "id": "t1_text",
+              "id": "berlin_text",
               "type": "Text",
+              "variant": "body",
               "text": {
-                "$bind": "/city_0_detail"
+                "$bind": "/item_0_detail"
               }
             },
             {
-              "id": "t2",
-              "type": "Tab",
-              "label": "London",
+              "id": "london_panel",
+              "type": "Card",
+              "title": "London",
               "children": [
-                "t2_text"
+                "london_text"
               ]
             },
             {
-              "id": "t2_text",
+              "id": "london_text",
               "type": "Text",
+              "variant": "body",
               "text": {
-                "$bind": "/city_1_detail"
+                "$bind": "/item_1_detail"
               }
             },
             {
-              "id": "t3",
-              "type": "Tab",
-              "label": "Paris",
+              "id": "paris_panel",
+              "type": "Card",
+              "title": "Paris",
               "children": [
-                "t3_text"
+                "paris_text"
               ]
             },
             {
-              "id": "t3_text",
+              "id": "paris_text",
               "type": "Text",
+              "variant": "body",
               "text": {
-                "$bind": "/city_2_detail"
+                "$bind": "/item_2_detail"
               }
             },
             {
-              "id": "pb",
+              "id": "progress",
               "type": "ProgressBar",
               "value": {
                 "$bind": "/progress_value"
@@ -1074,64 +1025,90 @@
               "tone": "good"
             },
             {
-              "id": "tl",
+              "id": "timeline",
               "type": "Timeline",
-              "title": "Run History",
+              "title": "Research Progress",
               "events": {
-                "$bind": "/timeline_events"
+                "$bind": "/timeline"
               }
             }
           ],
           "dataModel": {
-            "title": "Population comparison \u2014 composed by the live graph",
-            "subtitle": "### European Cities Population Comparison Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on current 2026 projections.\n\n| City | Primary Population Estimate | Context / Notes |\n| :--- | :-",
-            "kpi_cities": 3,
-            "kpi_sources": 9,
-            "kpi_research_nodes": 3,
-            "largest_city": "London",
-            "population_bars": [
+            "title": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+            "goal": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+            "summary": "### **European Capitals Comparison Dashboard**\n\nThis dashboard provides a comparative overview of London, Berlin, and Paris based on their historical development, cultural significance, and urban evolution.\n\n| Feature | **London** | **Berlin** | **Paris** |\n| :--- | :--- | :--- | :--- |\n| **Primary Status** | Capital of the UK; historic metropolis. | Capital of Germany; political/economic hub. | Capital of France; global cultural center. |\n| **Geographic Context** | Situated on the River Thames. | Located on the North German Plain. | Situated along the Seine River. |\n| **Historical Focus** | Social history, civic governance, and urban life (1600s\u20131800s). | Prussian history, 20th-century conflict, and reunification. | Medieval religious/commercial center; Gothic architecture. |\n| **Key Development** | Evolved through trade, social policy, and industrialization. | Rose from a medieval trading post to a unified imperial capital. | Rapid industrial expansion (1850\u20131930); intellectual hub. |\n| **Cultural Identity** | Defined by its diverse social strata and historical topography. | Defined by its resilience and pivotal role in modern history. | Defined by gastronomy, haute couture, art, and literature. |\n\n---\n\n### **City Profiles**\n\n#### **London**\n*   **Profile:** A city defined by its long-standing social and civic evolution.\n*   **Research Highlights:** Historical research focuses on the lives of its inhabitants across centuries, utilizing archaeological and documentary evidence to track shifts in poverty, crime, and social policy from the medieval period through the 18th century.\n\n#### **Berlin**\n*   **Profile:** A city shaped by its central role in the political shifts of the 19th and 20th centuries.\n*   **Research Highlights:** Berlin\u2019s narrative is anchored in its transition from the capital of Prussia to the center of 20th-century global events, including the World Wars, the Cold War division, and the eventual reunification of Germany.\n\n#### **Paris**\n*   **Profi",
+            "results": [
               {
                 "label": "Berlin",
-                "value": 3.775697
+                "detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s"
               },
               {
                 "label": "London",
-                "value": 9.1882
+                "detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro"
               },
               {
                 "label": "Paris",
-                "value": 2.06
+                "detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its"
+              }
+            ],
+            "items": [
+              {
+                "label": "Berlin"
+              },
+              {
+                "label": "London"
+              },
+              {
+                "label": "Paris"
+              }
+            ],
+            "metrics": [
+              {
+                "label": "Berlin",
+                "value": 3
+              },
+              {
+                "label": "London",
+                "value": 3
+              },
+              {
+                "label": "Paris",
+                "value": 3
               }
             ],
             "spark": [
-              3.775697,
-              9.1882,
-              2.06
+              3.0,
+              3.0,
+              3.0
             ],
             "table_rows": [
               {
-                "City": "Berlin",
-                "Population_M": 3.775697,
+                "Item": "Berlin",
                 "Sources": 3
               },
               {
-                "City": "London",
-                "Population_M": 9.1882,
+                "Item": "London",
                 "Sources": 3
               },
               {
-                "City": "Paris",
-                "Population_M": 2.06,
+                "Item": "Paris",
                 "Sources": 3
               }
             ],
-            "city_0_name": "Berlin",
-            "city_0_detail": "According to the provided search results, the population figures for the Berlin area in 2026 are as follows:\n\n*   **Berlin-Brandenburg Metropolitan Region:** World Population Review reports a population of approximately **5.8 million** people.\n*   **Berlin Urban Area/City:** World Population Review estimates the urban area population at approximately **3.7 million**, with a specific city populatio",
-            "city_1_name": "London",
-            "city_1_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-            "city_2_name": "Paris",
-            "city_2_detail": "The current population of Paris is estimated at 2,059,821 for 2026. This figure reflects a recent annual decline of approximately 0.7%, or 14,549 residents. Historical data indicates a downward trend from the 2,181,371 residents recorded in 2006.",
-            "timeline_events": [
+            "item_count": 3,
+            "source_count": 9,
+            "item_0_label": "Berlin",
+            "item_0_detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s",
+            "item_1_label": "London",
+            "item_1_detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro",
+            "item_2_label": "Paris",
+            "item_2_detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its",
+            "subjects": [
+              "Berlin",
+              "London",
+              "Paris"
+            ],
+            "timeline": [
               {
                 "time": "1",
                 "label": "run_started"
@@ -1154,7 +1131,7 @@
               },
               {
                 "time": "6",
-                "label": "task_succeeded search_3"
+                "label": "task_succeeded search_2"
               },
               {
                 "time": "7",
@@ -1162,23 +1139,23 @@
               },
               {
                 "time": "8",
-                "label": "task_succeeded search_1"
+                "label": "task_started research_berlin_retry"
               },
               {
                 "time": "9",
-                "label": "graph_patched"
+                "label": "task_succeeded search_3"
               },
               {
                 "time": "10",
-                "label": "task_succeeded search_2"
-              },
-              {
-                "time": "11",
                 "label": "graph_patched"
               },
               {
+                "time": "11",
+                "label": "task_succeeded search_1"
+              },
+              {
                 "time": "12",
-                "label": "task_started research_berlin_retry"
+                "label": "graph_patched"
               },
               {
                 "time": "13",
@@ -1210,55 +1187,81 @@
           }
         },
         "data_model": {
-          "title": "Population comparison \u2014 composed by the live graph",
-          "subtitle": "### European Cities Population Comparison Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on current 2026 projections.\n\n| City | Primary Population Estimate | Context / Notes |\n| :--- | :-",
-          "kpi_cities": 3,
-          "kpi_sources": 9,
-          "kpi_research_nodes": 3,
-          "largest_city": "London",
-          "population_bars": [
+          "title": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+          "goal": "Research the profiles of London, Berlin and Paris, then compose a comparison dashboard.",
+          "summary": "### **European Capitals Comparison Dashboard**\n\nThis dashboard provides a comparative overview of London, Berlin, and Paris based on their historical development, cultural significance, and urban evolution.\n\n| Feature | **London** | **Berlin** | **Paris** |\n| :--- | :--- | :--- | :--- |\n| **Primary Status** | Capital of the UK; historic metropolis. | Capital of Germany; political/economic hub. | Capital of France; global cultural center. |\n| **Geographic Context** | Situated on the River Thames. | Located on the North German Plain. | Situated along the Seine River. |\n| **Historical Focus** | Social history, civic governance, and urban life (1600s\u20131800s). | Prussian history, 20th-century conflict, and reunification. | Medieval religious/commercial center; Gothic architecture. |\n| **Key Development** | Evolved through trade, social policy, and industrialization. | Rose from a medieval trading post to a unified imperial capital. | Rapid industrial expansion (1850\u20131930); intellectual hub. |\n| **Cultural Identity** | Defined by its diverse social strata and historical topography. | Defined by its resilience and pivotal role in modern history. | Defined by gastronomy, haute couture, art, and literature. |\n\n---\n\n### **City Profiles**\n\n#### **London**\n*   **Profile:** A city defined by its long-standing social and civic evolution.\n*   **Research Highlights:** Historical research focuses on the lives of its inhabitants across centuries, utilizing archaeological and documentary evidence to track shifts in poverty, crime, and social policy from the medieval period through the 18th century.\n\n#### **Berlin**\n*   **Profile:** A city shaped by its central role in the political shifts of the 19th and 20th centuries.\n*   **Research Highlights:** Berlin\u2019s narrative is anchored in its transition from the capital of Prussia to the center of 20th-century global events, including the World Wars, the Cold War division, and the eventual reunification of Germany.\n\n#### **Paris**\n*   **Profi",
+          "results": [
             {
               "label": "Berlin",
-              "value": 3.775697
+              "detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s"
             },
             {
               "label": "London",
-              "value": 9.1882
+              "detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro"
             },
             {
               "label": "Paris",
-              "value": 2.06
+              "detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its"
+            }
+          ],
+          "items": [
+            {
+              "label": "Berlin"
+            },
+            {
+              "label": "London"
+            },
+            {
+              "label": "Paris"
+            }
+          ],
+          "metrics": [
+            {
+              "label": "Berlin",
+              "value": 3
+            },
+            {
+              "label": "London",
+              "value": 3
+            },
+            {
+              "label": "Paris",
+              "value": 3
             }
           ],
           "spark": [
-            3.775697,
-            9.1882,
-            2.06
+            3.0,
+            3.0,
+            3.0
           ],
           "table_rows": [
             {
-              "City": "Berlin",
-              "Population_M": 3.775697,
+              "Item": "Berlin",
               "Sources": 3
             },
             {
-              "City": "London",
-              "Population_M": 9.1882,
+              "Item": "London",
               "Sources": 3
             },
             {
-              "City": "Paris",
-              "Population_M": 2.06,
+              "Item": "Paris",
               "Sources": 3
             }
           ],
-          "city_0_name": "Berlin",
-          "city_0_detail": "According to the provided search results, the population figures for the Berlin area in 2026 are as follows:\n\n*   **Berlin-Brandenburg Metropolitan Region:** World Population Review reports a population of approximately **5.8 million** people.\n*   **Berlin Urban Area/City:** World Population Review estimates the urban area population at approximately **3.7 million**, with a specific city populatio",
-          "city_1_name": "London",
-          "city_1_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-          "city_2_name": "Paris",
-          "city_2_detail": "The current population of Paris is estimated at 2,059,821 for 2026. This figure reflects a recent annual decline of approximately 0.7%, or 14,549 residents. Historical data indicates a downward trend from the 2,181,371 residents recorded in 2006.",
-          "timeline_events": [
+          "item_count": 3,
+          "source_count": 9,
+          "item_0_label": "Berlin",
+          "item_0_detail": "Based on the provided sources, here is a factual overview of Berlin:\n\n### **Overview and Geography**\n*   **Status:** Berlin is the capital and primary urban center of Germany.\n*   **Location:** It is situated in the heart of the North German Plain. Its geographic position along an east-west commercial axis was instrumental in its historical development as a major political and economic hub.\n\n### **Historical Significance**\n*   **Origins:** The city began as a modest medieval trading settlement before evolving into a significant European power center.\n*   **Prussian and Imperial Era:** Berlin s",
+          "item_1_label": "London",
+          "item_1_detail": "Based on the provided sources, research into the profiles of Londoners across different historical periods is supported by the following resources:\n\n*   **Medieval London (c. 500\u20131500):** The *Medieval Londoners* project at Fordham University provides a comprehensive database (MLD) and research portal. It utilizes a multidisciplinary approach, combining documentary and narrative texts with archaeological, visual, and cartographic evidence to reconstruct the lives and material world of medieval inhabitants.\n*   **Early Modern London (c. 1500\u20131700):** Research into the interests and cultural pro",
+          "item_2_label": "Paris",
+          "item_2_detail": "Paris, the capital of France, is situated along the Seine River in the north-central part of the country. It is globally recognized as a major center for culture, art, gastronomy, haute couture, literature, and intellectual life.\n\n**Historical Profile:**\n*   **Middle Ages:** Paris was the largest city in Europe, serving as a vital religious and commercial hub. It is noted as the birthplace of Gothic architecture and home to the University of Paris, which was established in the mid-13th century.\n*   **Population Growth:** The city experienced significant expansion during the industrial era. Its",
+          "subjects": [
+            "Berlin",
+            "London",
+            "Paris"
+          ],
+          "timeline": [
             {
               "time": "1",
               "label": "run_started"
@@ -1281,7 +1284,7 @@
             },
             {
               "time": "6",
-              "label": "task_succeeded search_3"
+              "label": "task_succeeded search_2"
             },
             {
               "time": "7",
@@ -1289,23 +1292,23 @@
             },
             {
               "time": "8",
-              "label": "task_succeeded search_1"
+              "label": "task_started research_berlin_retry"
             },
             {
               "time": "9",
-              "label": "graph_patched"
+              "label": "task_succeeded search_3"
             },
             {
               "time": "10",
-              "label": "task_succeeded search_2"
-            },
-            {
-              "time": "11",
               "label": "graph_patched"
             },
             {
+              "time": "11",
+              "label": "task_succeeded search_1"
+            },
+            {
               "time": "12",
-              "label": "task_started research_berlin_retry"
+              "label": "graph_patched"
             },
             {
               "time": "13",
@@ -1336,28 +1339,23 @@
           "progress_max": 6
         },
         "validator": {
-          "proposed": 19,
-          "accepted": 19,
+          "proposed": 15,
+          "accepted": 15,
           "rejected": 0,
           "ok": true,
           "rejections": [],
           "dangling_child_refs": [],
           "component_types": [
-            "BarChart",
+            "Card",
             "Column",
-            "DataTable",
-            "Grid",
-            "Heading",
             "ProgressBar",
             "Row",
-            "Sparkline",
             "StatTile",
-            "Tab",
             "Tabs",
             "Text",
             "Timeline"
           ],
-          "component_count": 19
+          "component_count": 15
         },
         "upstream_used": [
           "Berlin",

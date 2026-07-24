@@ -26,6 +26,9 @@ class ScopeBody(BaseModel):
 
 class RunBody(ScopeBody):
     prompt: str = Field(min_length=1, max_length=40_000)
+    # How the run should answer: a plain text answer ("text", the default) or a
+    # composed, validated A2UI interface ("ui"). Additive and domain-agnostic.
+    respond_as: str = Field(default="text", pattern="^(text|ui)$")
 
 
 class ResumeBody(BaseModel):
@@ -57,7 +60,8 @@ async def run(body: RunBody, request: Request):
     try:
         return await runtime.run(prompt=body.prompt, scope=body.scope(),
                                  llm=lambda prompt, system: gateway_text_llm(request.app, prompt, system),
-                                 source_uri="api://agent/runs", source_author=body.user_id or "api-user")
+                                 source_uri="api://agent/runs", source_author=body.user_id or "api-user",
+                                 respond_as=body.respond_as)
     except RuntimeError as error:
         raise HTTPException(503, str(error)) from error
 

@@ -1,6 +1,6 @@
 {
   "task": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
-  "run_id": "run-cc3b2834e1c1",
+  "run_id": "run-ae76908f3e6c",
   "status": "completed",
   "gateway_base_url": "http://127.0.0.1:8111",
   "gateway_provider_env": "gemini",
@@ -39,7 +39,7 @@
         "skill": "compose_surface",
         "state": "succeeded",
         "agent": "ui_composer",
-        "provider": "gemini_3",
+        "provider": "gemini_5",
         "model": "gemini-3.1-flash-lite"
       }
     },
@@ -103,7 +103,7 @@
     {
       "sequence": 6,
       "kind": "task_succeeded",
-      "node_id": "search_3"
+      "node_id": "search_2"
     },
     {
       "sequence": 7,
@@ -113,7 +113,7 @@
     {
       "sequence": 8,
       "kind": "task_succeeded",
-      "node_id": "search_2"
+      "node_id": "search_3"
     },
     {
       "sequence": 9,
@@ -165,7 +165,7 @@
     "id": "surface",
     "skill": "compose_surface",
     "state": "succeeded",
-    "provider": "gemini_3",
+    "provider": "gemini_5",
     "model": "gemini-3.1-flash-lite",
     "upstream_used": [
       "London",
@@ -173,78 +173,101 @@
       "Paris"
     ],
     "parse_ok": true,
-    "raw_surface": "{\n  \"root\": \"main\",\n  \"components\": [\n    {\n      \"id\": \"main\",\n      \"type\": \"Column\",\n      \"children\": [\n        \"title\",\n        \"kpi_row\",\n        \"charts_row\",\n        \"table\",\n        \"tabs\",\n        \"progress\",\n        \"timeline\"\n      ]\n    },\n    {\n      \"id\": \"title\",\n      \"type\": \"Text\",\n      \"variant\": \"heading\",\n      \"text\": {\n        \"$bind\": \"/title\"\n      }\n    },\n    {\n      \"id\": \"kpi_row\",\n      \"type\": \"Row\",\n      \"justify\": \"spaceAround\",\n      \"children\": [\n        \"kpi1\",\n        \"kpi2\",\n        \"kpi3\"\n      ]\n    },\n    {\n      \"id\": \"kpi1\",\n      \"type\": \"StatTile\",\n      \"label\": \"Cities\",\n      \"value\": {\n        \"$bind\": \"/kpi_cities\"\n      }\n    },\n    {\n      \"id\": \"kpi2\",\n      \"type\": \"StatTile\",\n      \"label\": \"Sources\",\n      \"value\": {\n        \"$bind\": \"/kpi_sources\"\n      }\n    },\n    {\n      \"id\": \"kpi3\",\n      \"type\": \"StatTile\",\n      \"label\": \"Research Nodes\",\n      \"value\": {\n        \"$bind\": \"/kpi_research_nodes\"\n      }\n    },\n    {\n      \"id\": \"charts_row\",\n      \"type\": \"Row\",\n      \"align\": \"center\",\n      \"children\": [\n        \"bar_chart\",\n        \"sparkline\"\n      ]\n    },\n    {\n      \"id\": \"bar_chart\",\n      \"type\": \"BarChart\",\n      \"title\": \"Population (M)\",\n      \"data\": {\n        \"$bind\": \"/population_bars\"\n      },\n      \"xKey\": \"label\",\n      \"yKey\": \"value\"\n    },\n    {\n      \"id\": \"sparkline\",\n      \"type\": \"Sparkline\",\n      \"data\": {\n        \"$bind\": \"/spark\"\n      },\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"table\",\n      \"type\": \"DataTable\",\n      \"columns\": \"City,Population_M,Sources\",\n      \"rows\": {\n        \"$bind\": \"/table_rows\"\n      },\n      \"sortable\": true,\n      \"filterKey\": \"City\"\n    },\n    {\n      \"id\": \"tabs\",\n      \"type\": \"Tabs\",\n      \"labels\": \"London,Berlin,Paris\",\n      \"children\": [\n        \"p0\",\n        \"p1\",\n        \"p2\"\n      ]\n    },\n    {\n      \"id\": \"p0\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_0_detail\"\n      }\n    },\n    {\n      \"id\": \"p1\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_1_detail\"\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_2_detail\"\n      }\n    },\n    {\n      \"id\": \"progress\",\n      \"type\": \"ProgressBar\",\n      \"value\": {\n        \"$bind\": \"/progress_value\"\n      },\n      \"max\": 5,\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"timeline\",\n      \"type\": \"Timeline\",\n      \"title\": \"Process Timeline\",\n      \"events\": {\n        \"$bind\": \"/timeline_events\"\n      }\n    }\n  ]\n}",
+    "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"title\",\"summary\",\"progress\",\"table\",\"tabs\",\"timeline\"]},{\"id\":\"title\",\"type\":\"Text\",\"variant\":\"heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"summary\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/summary\"}},{\"id\":\"progress\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":5,\"tone\":\"neutral\"},{\"id\":\"table\",\"type\":\"DataTable\",\"columns\":\"Item,Sources\",\"rows\":{\"$bind\":\"/table_rows\"}},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"London,Berlin,Paris\",\"children\":[\"p0\",\"p1\",\"p2\"]},{\"id\":\"p0\",\"type\":\"Card\",\"title\":\"London\",\"children\":[\"t0\"]},{\"id\":\"t0\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_0_detail\"}},{\"id\":\"p1\",\"type\":\"Card\",\"title\":\"Berlin\",\"children\":[\"t1\"]},{\"id\":\"t1\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_1_detail\"}},{\"id\":\"p2\",\"type\":\"Card\",\"title\":\"Paris\",\"children\":[\"t2\"]},{\"id\":\"t2\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_2_detail\"}},{\"id\":\"timeline\",\"type\":\"Timeline\",\"title\":\"Research Process\",\"events\":{\"$bind\":\"/timeline\"}}]}",
     "validator": {
-      "proposed": 16,
-      "accepted": 16,
+      "proposed": 13,
+      "accepted": 13,
       "rejected": 0,
       "ok": true,
       "rejections": [],
       "dangling_child_refs": [],
       "component_types": [
-        "BarChart",
+        "Card",
         "Column",
         "DataTable",
         "ProgressBar",
-        "Row",
-        "Sparkline",
-        "StatTile",
         "Tabs",
         "Text",
         "Timeline"
       ],
-      "component_count": 16
+      "component_count": 13
     },
     "data_model": {
-      "title": "Population comparison \u2014 composed by the live graph",
-      "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
-      "kpi_cities": 3,
-      "kpi_sources": 9,
-      "kpi_research_nodes": 3,
-      "largest_city": "London",
-      "population_bars": [
+      "title": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+      "goal": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+      "summary": "### Population Comparison Dashboard: London, Berlin, and Paris\n\nThis dashboard summarizes the demographic profiles and historical trends for three major European capitals based on available data.\n\n| Metric | London | Berlin | Paris |\n| :--- | :--- | :--- | :--- |\n| **Population Status** | Official census data available from 1961 onwards. | 3,769,495 (as of Dec 2019). | Historical peak reached during the interwar period. |\n| **Key Demographic Feature** | High diversity; significant metrics on non-UK born residents. | Most populous city proper in the EU; 4,227 inhabitants/km\u00b2. | High proportion of single people; majority born outside the capital. |\n| **Historical Context** | Current borough boundaries established in 1963. | Germany's largest city; 621,075 foreign residents (2015). | Population lower today than 100 years ago; peaked 1861\u20131921. |\n\n---\n\n#### Key Insights\n\n*   **London:** Modern demographic tracking focuses on borough-level geography, population density, and the integration of minority ethnic groups and foreign-born residents. Historical data prior to 1961 requires specialized research from Greater London Council archives.\n*   **Berlin:** Currently holds the title of the most populous city proper within the European Union. It maintains a high population density and detailed records on citizenship and country of birth.\n*   **Paris:** Exhibits a unique demographic trajectory where the population is currently lower than its historical peak in the early 20th century. The city has historically functioned as a hub for internal migration, with a consistent trend of residents being born outside the capital.",
+      "results": [
         {
           "label": "London",
-          "value": 9.1882
+          "detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over "
         },
         {
           "label": "Berlin",
-          "value": 3.775697
+          "detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents."
         },
         {
           "label": "Paris",
-          "value": 2.06
+          "detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** "
+        }
+      ],
+      "items": [
+        {
+          "label": "London"
+        },
+        {
+          "label": "Berlin"
+        },
+        {
+          "label": "Paris"
+        }
+      ],
+      "metrics": [
+        {
+          "label": "London",
+          "value": 3
+        },
+        {
+          "label": "Berlin",
+          "value": 3
+        },
+        {
+          "label": "Paris",
+          "value": 3
         }
       ],
       "spark": [
-        9.1882,
-        3.775697,
-        2.06
+        3.0,
+        3.0,
+        3.0
       ],
       "table_rows": [
         {
-          "City": "London",
-          "Population_M": 9.1882,
+          "Item": "London",
           "Sources": 3
         },
         {
-          "City": "Berlin",
-          "Population_M": 3.775697,
+          "Item": "Berlin",
           "Sources": 3
         },
         {
-          "City": "Paris",
-          "Population_M": 2.06,
+          "Item": "Paris",
           "Sources": 3
         }
       ],
-      "city_0_name": "London",
-      "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-      "city_1_name": "Berlin",
-      "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
-      "city_2_name": "Paris",
-      "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
-      "timeline_events": [
+      "item_count": 3,
+      "source_count": 9,
+      "item_0_label": "London",
+      "item_0_detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over ",
+      "item_1_label": "Berlin",
+      "item_1_detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents.",
+      "item_2_label": "Paris",
+      "item_2_detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** ",
+      "subjects": [
+        "London",
+        "Berlin",
+        "Paris"
+      ],
+      "timeline": [
         {
           "time": "1",
           "label": "run_started"
@@ -267,7 +290,7 @@
         },
         {
           "time": "6",
-          "label": "task_succeeded search_3"
+          "label": "task_succeeded search_2"
         },
         {
           "time": "7",
@@ -275,7 +298,7 @@
         },
         {
           "time": "8",
-          "label": "task_succeeded search_2"
+          "label": "task_succeeded search_3"
         },
         {
           "time": "9",
@@ -310,18 +333,17 @@
       "progress_max": 5
     },
     "surface_accepted": {
-      "root": "main",
+      "root": "root",
       "components": [
         {
-          "id": "main",
+          "id": "root",
           "type": "Column",
           "children": [
             "title",
-            "kpi_row",
-            "charts_row",
+            "summary",
+            "progress",
             "table",
             "tabs",
-            "progress",
             "timeline"
           ]
         },
@@ -334,75 +356,29 @@
           }
         },
         {
-          "id": "kpi_row",
-          "type": "Row",
-          "justify": "spaceAround",
-          "children": [
-            "kpi1",
-            "kpi2",
-            "kpi3"
-          ]
-        },
-        {
-          "id": "kpi1",
-          "type": "StatTile",
-          "label": "Cities",
-          "value": {
-            "$bind": "/kpi_cities"
+          "id": "summary",
+          "type": "Text",
+          "variant": "body",
+          "text": {
+            "$bind": "/summary"
           }
         },
         {
-          "id": "kpi2",
-          "type": "StatTile",
-          "label": "Sources",
+          "id": "progress",
+          "type": "ProgressBar",
           "value": {
-            "$bind": "/kpi_sources"
-          }
-        },
-        {
-          "id": "kpi3",
-          "type": "StatTile",
-          "label": "Research Nodes",
-          "value": {
-            "$bind": "/kpi_research_nodes"
-          }
-        },
-        {
-          "id": "charts_row",
-          "type": "Row",
-          "align": "center",
-          "children": [
-            "bar_chart",
-            "sparkline"
-          ]
-        },
-        {
-          "id": "bar_chart",
-          "type": "BarChart",
-          "title": "Population (M)",
-          "data": {
-            "$bind": "/population_bars"
+            "$bind": "/progress_value"
           },
-          "xKey": "label",
-          "yKey": "value"
-        },
-        {
-          "id": "sparkline",
-          "type": "Sparkline",
-          "data": {
-            "$bind": "/spark"
-          },
+          "max": 5,
           "tone": "neutral"
         },
         {
           "id": "table",
           "type": "DataTable",
-          "columns": "City,Population_M,Sources",
+          "columns": "Item,Sources",
           "rows": {
             "$bind": "/table_rows"
-          },
-          "sortable": true,
-          "filterKey": "City"
+          }
         },
         {
           "id": "tabs",
@@ -416,96 +392,137 @@
         },
         {
           "id": "p0",
+          "type": "Card",
+          "title": "London",
+          "children": [
+            "t0"
+          ]
+        },
+        {
+          "id": "t0",
           "type": "Text",
           "variant": "body",
           "text": {
-            "$bind": "/city_0_detail"
+            "$bind": "/item_0_detail"
           }
         },
         {
           "id": "p1",
+          "type": "Card",
+          "title": "Berlin",
+          "children": [
+            "t1"
+          ]
+        },
+        {
+          "id": "t1",
           "type": "Text",
           "variant": "body",
           "text": {
-            "$bind": "/city_1_detail"
+            "$bind": "/item_1_detail"
           }
         },
         {
           "id": "p2",
+          "type": "Card",
+          "title": "Paris",
+          "children": [
+            "t2"
+          ]
+        },
+        {
+          "id": "t2",
           "type": "Text",
           "variant": "body",
           "text": {
-            "$bind": "/city_2_detail"
+            "$bind": "/item_2_detail"
           }
-        },
-        {
-          "id": "progress",
-          "type": "ProgressBar",
-          "value": {
-            "$bind": "/progress_value"
-          },
-          "max": 5,
-          "tone": "neutral"
         },
         {
           "id": "timeline",
           "type": "Timeline",
-          "title": "Process Timeline",
+          "title": "Research Process",
           "events": {
-            "$bind": "/timeline_events"
+            "$bind": "/timeline"
           }
         }
       ],
       "dataModel": {
-        "title": "Population comparison \u2014 composed by the live graph",
-        "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
-        "kpi_cities": 3,
-        "kpi_sources": 9,
-        "kpi_research_nodes": 3,
-        "largest_city": "London",
-        "population_bars": [
+        "title": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+        "goal": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+        "summary": "### Population Comparison Dashboard: London, Berlin, and Paris\n\nThis dashboard summarizes the demographic profiles and historical trends for three major European capitals based on available data.\n\n| Metric | London | Berlin | Paris |\n| :--- | :--- | :--- | :--- |\n| **Population Status** | Official census data available from 1961 onwards. | 3,769,495 (as of Dec 2019). | Historical peak reached during the interwar period. |\n| **Key Demographic Feature** | High diversity; significant metrics on non-UK born residents. | Most populous city proper in the EU; 4,227 inhabitants/km\u00b2. | High proportion of single people; majority born outside the capital. |\n| **Historical Context** | Current borough boundaries established in 1963. | Germany's largest city; 621,075 foreign residents (2015). | Population lower today than 100 years ago; peaked 1861\u20131921. |\n\n---\n\n#### Key Insights\n\n*   **London:** Modern demographic tracking focuses on borough-level geography, population density, and the integration of minority ethnic groups and foreign-born residents. Historical data prior to 1961 requires specialized research from Greater London Council archives.\n*   **Berlin:** Currently holds the title of the most populous city proper within the European Union. It maintains a high population density and detailed records on citizenship and country of birth.\n*   **Paris:** Exhibits a unique demographic trajectory where the population is currently lower than its historical peak in the early 20th century. The city has historically functioned as a hub for internal migration, with a consistent trend of residents being born outside the capital.",
+        "results": [
           {
             "label": "London",
-            "value": 9.1882
+            "detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over "
           },
           {
             "label": "Berlin",
-            "value": 3.775697
+            "detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents."
           },
           {
             "label": "Paris",
-            "value": 2.06
+            "detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** "
+          }
+        ],
+        "items": [
+          {
+            "label": "London"
+          },
+          {
+            "label": "Berlin"
+          },
+          {
+            "label": "Paris"
+          }
+        ],
+        "metrics": [
+          {
+            "label": "London",
+            "value": 3
+          },
+          {
+            "label": "Berlin",
+            "value": 3
+          },
+          {
+            "label": "Paris",
+            "value": 3
           }
         ],
         "spark": [
-          9.1882,
-          3.775697,
-          2.06
+          3.0,
+          3.0,
+          3.0
         ],
         "table_rows": [
           {
-            "City": "London",
-            "Population_M": 9.1882,
+            "Item": "London",
             "Sources": 3
           },
           {
-            "City": "Berlin",
-            "Population_M": 3.775697,
+            "Item": "Berlin",
             "Sources": 3
           },
           {
-            "City": "Paris",
-            "Population_M": 2.06,
+            "Item": "Paris",
             "Sources": 3
           }
         ],
-        "city_0_name": "London",
-        "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-        "city_1_name": "Berlin",
-        "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
-        "city_2_name": "Paris",
-        "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
-        "timeline_events": [
+        "item_count": 3,
+        "source_count": 9,
+        "item_0_label": "London",
+        "item_0_detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over ",
+        "item_1_label": "Berlin",
+        "item_1_detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents.",
+        "item_2_label": "Paris",
+        "item_2_detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** ",
+        "subjects": [
+          "London",
+          "Berlin",
+          "Paris"
+        ],
+        "timeline": [
           {
             "time": "1",
             "label": "run_started"
@@ -528,7 +545,7 @@
           },
           {
             "time": "6",
-            "label": "task_succeeded search_3"
+            "label": "task_succeeded search_2"
           },
           {
             "time": "7",
@@ -536,7 +553,7 @@
           },
           {
             "time": "8",
-            "label": "task_succeeded search_2"
+            "label": "task_succeeded search_3"
           },
           {
             "time": "9",
@@ -585,7 +602,7 @@
       "node_id": null,
       "payload": {
         "trigger_event": 1,
-        "reason": "first frontier selected for compose_dashboard",
+        "reason": "first frontier selected for compose_research",
         "add": [
           "search_1",
           "search_2",
@@ -628,28 +645,28 @@
     {
       "sequence": 6,
       "kind": "task_succeeded",
-      "node_id": "search_3",
+      "node_id": "search_2",
       "payload": {
-        "query": "current population of Paris",
+        "query": "Research the populations of and then Berlin",
         "hits": [
           {
-            "title": "Paris Population 2026",
-            "url": "https://worldpopulationreview.com/cities/france/paris",
-            "snippet": "worldpopulationreview.com/cities/france/paris Paris's 2026 population is now estimated at 2,059,821. In 2006, the population of Paris was 2,181,371. Paris experienced a decrease of -14,549 residents over the past year, marking an annual decline of -0.7%.These population values and projections come from INSEE historical municipal populations (PMUN) by commune and World Population Review Internal Projections."
+            "title": "Demographics of Berlin - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Demographics_of_Berlin",
+            "snippet": "en.wikipedia.org/wiki/Demographics_of_Berlin Urbanized Berlin In December 2019, the city-state of Berlin had a population of 3,769,495 registered inhabitants [1] in an area of 891.82 square kilometers (344.33 sq mi). [2] The city's population density was 4,227 inhabitants per km 2. Berlin is Germany's largest city and the most populous city proper in the European Union. In December 2015, there were 621,075 registered residents of foreign ..."
           },
           {
-            "title": "Paris (Paris, Paris, France) - Population Statistics, Charts, Map ...",
-            "url": "https://www.citypopulation.de/en/france/paris/paris/75056__paris/",
-            "snippet": "www.citypopulation.de/en/france/paris/paris/75056__paris/ Paris in Paris ( Paris ) Commune The population development of Paris as well as related information and services (weather, Wikipedia, Google, images)."
+            "title": "Berlin population statistics - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Berlin_population_statistics",
+            "snippet": "en.wikipedia.org/wiki/Berlin_population_statistics Berlin population statistics Berlin is the most populous city in the European Union, as calculated by city-proper population (not metropolitan area)."
           },
           {
-            "title": "Population of Paris (2025): Size & Demographics | Geography Worlds",
-            "url": "https://geographyworlds.com/blog/population-of-paris/",
-            "snippet": "geographyworlds.com/blog/population-of-paris/ Population of Paris in 2025 is 2.1 million city and 12.2 million metro. Explore arrondissements, density, demographics, and key facts."
+            "title": "City in Berlin (Berlin, Germany) - City Population",
+            "url": "https://www.citypopulation.de/en/germany/berlin/11000__berlin/",
+            "snippet": "www.citypopulation.de/en/germany/berlin/11000__berlin/ City The population development of the city in Berlin . The icon links to further information about a selected place including its population structure (gender, age groups, age distribution, religion, citizenship, region of birth, country of birth)."
           }
         ],
-        "text": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
-        "provider": "gemini_1",
+        "text": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents.",
+        "provider": "gemini_2",
         "model": "gemini-3.1-flash-lite",
         "agent": "researcher"
       }
@@ -672,28 +689,28 @@
     {
       "sequence": 8,
       "kind": "task_succeeded",
-      "node_id": "search_2",
+      "node_id": "search_3",
       "payload": {
-        "query": "current population of Berlin",
+        "query": "Research the populations of and then Paris",
         "hits": [
           {
-            "title": "Berlin Population 2026",
-            "url": "https://worldpopulationreview.com/cities/germany/berlin",
-            "snippet": "worldpopulationreview.com/cities/germany/berlin Berlin's 2026 population is now estimated at 3,775,697. In 1990, the population of Berlin was 3,433,695. Berlin has grown by 45,490 in the last year, which represents a 1.22% annual change.These population values and projections come from Germany cities and communes over 10k via CityPopulation state pages and World Population Review Internal Projections."
+            "title": "Paris 100 years ago: more people than today\u2014and mostly born ... - Ined",
+            "url": "https://www.ined.fr/en/publications/editions/population-and-societies/paris-hundred-years-ago-more-people-than-today-and-mostly-born-elsewhere",
+            "snippet": "www.ined.fr/en/publications/editions/population-and-societies/paris-hundred-years-ago-more-people-than-today-and-mostly-born-elsewhere The population of Paris reached its peak during the interwar period. Today, as then , the vast majority of Parisian men and women are born outside the capital. The massive influx of young people of working age, coupled with a low fertility rate and fewer older people, gave the interwar population of Paris a distinctive structure. And while, today as then , Paris has more single people than the ..."
           },
           {
-            "title": "Berlin by the Numbers: Exploring the City's Population Today",
-            "url": "https://berlinavenue.com/berlin-population/",
-            "snippet": "berlinavenue.com/berlin-population/ Discover the current population of Berlin , Germany. Get up-to-date statistics and key facts about the city's demographics in 2024."
+            "title": "Paris 100 years ago: more people than today\u2014and mostly born elsewhere",
+            "url": "https://shs.cairn.info/journal-population-societies-2025-9-page-1?lang=en",
+            "snippet": "shs.cairn.info/journal-population-societies-2025-9-page-1?lang=en These provide an insight into the characteristics of the population of Paris between the two world wars. A city with a peaking population Between 1861 and 1921, Paris gained more than 1.2 million new residents."
           },
           {
-            "title": "Berlin (Berlin, Berlin, Germany) - Population Statistics, Charts, Map ...",
-            "url": "https://www.citypopulation.de/en/germany/berlin/11000/11000000__berlin/",
-            "snippet": "www.citypopulation.de/en/germany/berlin/11000/11000000__berlin/ Berlin in Berlin ( Berlin ) County-level City The population development of Berlin as well as related information and services (weather, Wikipedia, Google, images)."
+            "title": "A Brief History of Parisian Demography | Un jour de plus \u00e0 Paris",
+            "url": "https://www.unjourdeplusaparis.com/en/paris-reportage/petite-histoire-demographie-parisi",
+            "snippet": "www.unjourdeplusaparis.com/en/paris-reportage/petite-histoire-demographie-parisi In effect, Paris became almost uninhabitable and would not recover its pre-war population until around 1500, some eighty years later. Upon the death of Charles IX in 1574, Paris's population is estimated at around 350,000. For reference, at that time, Rouen had approximately 50,000 inhabitants, Lyon 100,000, and Milan 180,000."
           }
         ],
-        "text": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
-        "provider": "gemini_2",
+        "text": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** Today, the population of Paris is lower than it was 100 years ago. \n*   **Demographic Characteristics:** Throughout both the interwar period and the present day, the vast majority of Parisians were born outside of the capital. The city has consistently maintained a high proportion of single people and a demographic structure heavily influenced by the influx of young, working-age individuals.",
+        "provider": "gemini_1",
         "model": "gemini-3.1-flash-lite",
         "agent": "researcher"
       }
@@ -718,25 +735,25 @@
       "kind": "task_succeeded",
       "node_id": "search_1",
       "payload": {
-        "query": "current population of London",
+        "query": "Research the populations of and then London",
         "hits": [
           {
-            "title": "London Population 2026",
-            "url": "https://worldpopulationreview.com/cities/united-kingdom/london",
-            "snippet": "worldpopulationreview.com/cities/united-kingdom/london London's 2026 population is now estimated at 9,188,200. In 2025, the population of London was 9,138,835. London has grown by 49,365 in the last year, which represents a 0.54% annual change.These population values and projections come from World Population Review Internal Projections."
+            "title": "PDF",
+            "url": "https://data.london.gov.uk/download/2z0zp/0a026346-960e-49e6-b968-a386d2cfe55f/historical population 1939-2015.pdf",
+            "snippet": "historical population 1939-2015 data.london.gov.uk/download/2z0zp/0a026346-960e-49e6-b968-a386d2cfe55f/historical population 1939-2015.pdf Historical Borough Population Estimates The current London borough boundaries were defined in 1963. Official Statistics based on census counts are available for the 32 boroughs and City of London for 1961 onwards. The populations of these 33 areas before 1961 must be calculated from other sources. This work was undertaken by the Greater London Council and published in 1978 as Research ..."
           },
           {
-            "title": "Greater London Population 2025 (Updated)- Population Pie",
-            "url": "https://populationpie.co.uk/greater-london-population/",
-            "snippet": "populationpie.co.uk/greater-london-population/ As of September 2025, the Current Population of Greater London is 9.8 million according to Wikipedia."
+            "title": "Population Of London, London Population Growth - Trust for London",
+            "url": "https://trustforlondon.org.uk/data/population-over-time/",
+            "snippet": "trustforlondon.org.uk/data/population-over-time/ Find out more about how London's population has changed over time and how this compares to the rest of England. Find out more about London's population here."
           },
           {
-            "title": "London Population 2026: Size, Growth & Key Facts",
-            "url": "https://thelondonreport.co.uk/london/london-population/",
-            "snippet": "thelondonreport.co.uk/london/london-population/ Discover London population in 2026, growth trends, borough data, and why the city continues to attract millions of residents worldwide."
+            "title": "Demography, London's Population & Geography - Trust For London",
+            "url": "https://trustforlondon.org.uk/data/geography-population/",
+            "snippet": "trustforlondon.org.uk/data/geography-population/ What's this? This table shows London's population , split by geography. It also shows how each region's population has changed in the last decade, its population density, the proportion of people that are Black or minority ethnic, and the proportion that were born outside of the UK."
           }
         ],
-        "text": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
+        "text": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over the last decade, the proportion of Black and minority ethnic residents, and the percentage of the population born outside of the UK.\n*   **Growth Trends:** Resources are available to track how London's population has evolved over time and how these trends compare to the rest of England.",
         "provider": "gemini_3",
         "model": "gemini-3.1-flash-lite",
         "agent": "researcher"
@@ -748,7 +765,7 @@
       "node_id": null,
       "payload": {
         "trigger_event": 10,
-        "reason": "all corrected research evidence landed; specialist synthesis can begin",
+        "reason": "all corrected research evidence landed; synthesis can begin",
         "add": [
           "distill"
         ],
@@ -786,7 +803,7 @@
       "kind": "task_succeeded",
       "node_id": "distill",
       "payload": {
-        "text": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| **London** | 9.19M \u2013 9.8M | +0.54% (Growth) |\n| **Berlin** | 3.78M | +1.22% (Growth) |\n| **Paris** | 2.06M | -0.70% (Decline) |\n\n---\n\n#### Key Insights\n\n*   **London:** Remains the most populous city among the three. Estimates vary between ~9.2 million (World Population Review) and 9.8 million (Population Pie), reflecting differences in how \"Greater London\" boundaries are defined. The city continues to see steady growth.\n*   **Berlin:** Shows the highest relative growth rate of the three cities at 1.22%, with a current population of approximately 3.78 million.\n*   **Paris:** While the city proper has a smaller population of approximately 2.06 million and is currently experiencing a slight annual decline (-0.7%), it is important to note that the broader Paris metropolitan area is significantly larger, with an estimated population of 12.2 million.\n\n***Data Sources:** World Population Review, Population Pie, INSEE, and CityPopulation.de.*",
+        "text": "### Population Comparison Dashboard: London, Berlin, and Paris\n\nThis dashboard summarizes the demographic profiles and historical trends for three major European capitals based on available data.\n\n| Metric | London | Berlin | Paris |\n| :--- | :--- | :--- | :--- |\n| **Population Status** | Official census data available from 1961 onwards. | 3,769,495 (as of Dec 2019). | Historical peak reached during the interwar period. |\n| **Key Demographic Feature** | High diversity; significant metrics on non-UK born residents. | Most populous city proper in the EU; 4,227 inhabitants/km\u00b2. | High proportion of single people; majority born outside the capital. |\n| **Historical Context** | Current borough boundaries established in 1963. | Germany's largest city; 621,075 foreign residents (2015). | Population lower today than 100 years ago; peaked 1861\u20131921. |\n\n---\n\n#### Key Insights\n\n*   **London:** Modern demographic tracking focuses on borough-level geography, population density, and the integration of minority ethnic groups and foreign-born residents. Historical data prior to 1961 requires specialized research from Greater London Council archives.\n*   **Berlin:** Currently holds the title of the most populous city proper within the European Union. It maintains a high population density and detailed records on citizenship and country of birth.\n*   **Paris:** Exhibits a unique demographic trajectory where the population is currently lower than its historical peak in the early 20th century. The city has historically functioned as a hub for internal migration, with a consistent trend of residents being born outside the capital.",
         "provider": "gemini_4",
         "model": "gemini-3.1-flash-lite",
         "agent": "distiller"
@@ -841,22 +858,21 @@
       "node_id": "surface",
       "payload": {
         "agent": "ui_composer",
-        "provider": "gemini_3",
+        "provider": "gemini_5",
         "model": "gemini-3.1-flash-lite",
-        "raw_surface": "{\n  \"root\": \"main\",\n  \"components\": [\n    {\n      \"id\": \"main\",\n      \"type\": \"Column\",\n      \"children\": [\n        \"title\",\n        \"kpi_row\",\n        \"charts_row\",\n        \"table\",\n        \"tabs\",\n        \"progress\",\n        \"timeline\"\n      ]\n    },\n    {\n      \"id\": \"title\",\n      \"type\": \"Text\",\n      \"variant\": \"heading\",\n      \"text\": {\n        \"$bind\": \"/title\"\n      }\n    },\n    {\n      \"id\": \"kpi_row\",\n      \"type\": \"Row\",\n      \"justify\": \"spaceAround\",\n      \"children\": [\n        \"kpi1\",\n        \"kpi2\",\n        \"kpi3\"\n      ]\n    },\n    {\n      \"id\": \"kpi1\",\n      \"type\": \"StatTile\",\n      \"label\": \"Cities\",\n      \"value\": {\n        \"$bind\": \"/kpi_cities\"\n      }\n    },\n    {\n      \"id\": \"kpi2\",\n      \"type\": \"StatTile\",\n      \"label\": \"Sources\",\n      \"value\": {\n        \"$bind\": \"/kpi_sources\"\n      }\n    },\n    {\n      \"id\": \"kpi3\",\n      \"type\": \"StatTile\",\n      \"label\": \"Research Nodes\",\n      \"value\": {\n        \"$bind\": \"/kpi_research_nodes\"\n      }\n    },\n    {\n      \"id\": \"charts_row\",\n      \"type\": \"Row\",\n      \"align\": \"center\",\n      \"children\": [\n        \"bar_chart\",\n        \"sparkline\"\n      ]\n    },\n    {\n      \"id\": \"bar_chart\",\n      \"type\": \"BarChart\",\n      \"title\": \"Population (M)\",\n      \"data\": {\n        \"$bind\": \"/population_bars\"\n      },\n      \"xKey\": \"label\",\n      \"yKey\": \"value\"\n    },\n    {\n      \"id\": \"sparkline\",\n      \"type\": \"Sparkline\",\n      \"data\": {\n        \"$bind\": \"/spark\"\n      },\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"table\",\n      \"type\": \"DataTable\",\n      \"columns\": \"City,Population_M,Sources\",\n      \"rows\": {\n        \"$bind\": \"/table_rows\"\n      },\n      \"sortable\": true,\n      \"filterKey\": \"City\"\n    },\n    {\n      \"id\": \"tabs\",\n      \"type\": \"Tabs\",\n      \"labels\": \"London,Berlin,Paris\",\n      \"children\": [\n        \"p0\",\n        \"p1\",\n        \"p2\"\n      ]\n    },\n    {\n      \"id\": \"p0\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_0_detail\"\n      }\n    },\n    {\n      \"id\": \"p1\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_1_detail\"\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"type\": \"Text\",\n      \"variant\": \"body\",\n      \"text\": {\n        \"$bind\": \"/city_2_detail\"\n      }\n    },\n    {\n      \"id\": \"progress\",\n      \"type\": \"ProgressBar\",\n      \"value\": {\n        \"$bind\": \"/progress_value\"\n      },\n      \"max\": 5,\n      \"tone\": \"neutral\"\n    },\n    {\n      \"id\": \"timeline\",\n      \"type\": \"Timeline\",\n      \"title\": \"Process Timeline\",\n      \"events\": {\n        \"$bind\": \"/timeline_events\"\n      }\n    }\n  ]\n}",
+        "raw_surface": "{\"root\":\"root\",\"components\":[{\"id\":\"root\",\"type\":\"Column\",\"children\":[\"title\",\"summary\",\"progress\",\"table\",\"tabs\",\"timeline\"]},{\"id\":\"title\",\"type\":\"Text\",\"variant\":\"heading\",\"text\":{\"$bind\":\"/title\"}},{\"id\":\"summary\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/summary\"}},{\"id\":\"progress\",\"type\":\"ProgressBar\",\"value\":{\"$bind\":\"/progress_value\"},\"max\":5,\"tone\":\"neutral\"},{\"id\":\"table\",\"type\":\"DataTable\",\"columns\":\"Item,Sources\",\"rows\":{\"$bind\":\"/table_rows\"}},{\"id\":\"tabs\",\"type\":\"Tabs\",\"labels\":\"London,Berlin,Paris\",\"children\":[\"p0\",\"p1\",\"p2\"]},{\"id\":\"p0\",\"type\":\"Card\",\"title\":\"London\",\"children\":[\"t0\"]},{\"id\":\"t0\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_0_detail\"}},{\"id\":\"p1\",\"type\":\"Card\",\"title\":\"Berlin\",\"children\":[\"t1\"]},{\"id\":\"t1\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_1_detail\"}},{\"id\":\"p2\",\"type\":\"Card\",\"title\":\"Paris\",\"children\":[\"t2\"]},{\"id\":\"t2\",\"type\":\"Text\",\"variant\":\"body\",\"text\":{\"$bind\":\"/item_2_detail\"}},{\"id\":\"timeline\",\"type\":\"Timeline\",\"title\":\"Research Process\",\"events\":{\"$bind\":\"/timeline\"}}]}",
         "surface": {
-          "root": "main",
+          "root": "root",
           "components": [
             {
-              "id": "main",
+              "id": "root",
               "type": "Column",
               "children": [
                 "title",
-                "kpi_row",
-                "charts_row",
+                "summary",
+                "progress",
                 "table",
                 "tabs",
-                "progress",
                 "timeline"
               ]
             },
@@ -869,75 +885,29 @@
               }
             },
             {
-              "id": "kpi_row",
-              "type": "Row",
-              "justify": "spaceAround",
-              "children": [
-                "kpi1",
-                "kpi2",
-                "kpi3"
-              ]
-            },
-            {
-              "id": "kpi1",
-              "type": "StatTile",
-              "label": "Cities",
-              "value": {
-                "$bind": "/kpi_cities"
+              "id": "summary",
+              "type": "Text",
+              "variant": "body",
+              "text": {
+                "$bind": "/summary"
               }
             },
             {
-              "id": "kpi2",
-              "type": "StatTile",
-              "label": "Sources",
+              "id": "progress",
+              "type": "ProgressBar",
               "value": {
-                "$bind": "/kpi_sources"
-              }
-            },
-            {
-              "id": "kpi3",
-              "type": "StatTile",
-              "label": "Research Nodes",
-              "value": {
-                "$bind": "/kpi_research_nodes"
-              }
-            },
-            {
-              "id": "charts_row",
-              "type": "Row",
-              "align": "center",
-              "children": [
-                "bar_chart",
-                "sparkline"
-              ]
-            },
-            {
-              "id": "bar_chart",
-              "type": "BarChart",
-              "title": "Population (M)",
-              "data": {
-                "$bind": "/population_bars"
+                "$bind": "/progress_value"
               },
-              "xKey": "label",
-              "yKey": "value"
-            },
-            {
-              "id": "sparkline",
-              "type": "Sparkline",
-              "data": {
-                "$bind": "/spark"
-              },
+              "max": 5,
               "tone": "neutral"
             },
             {
               "id": "table",
               "type": "DataTable",
-              "columns": "City,Population_M,Sources",
+              "columns": "Item,Sources",
               "rows": {
                 "$bind": "/table_rows"
-              },
-              "sortable": true,
-              "filterKey": "City"
+              }
             },
             {
               "id": "tabs",
@@ -951,96 +921,137 @@
             },
             {
               "id": "p0",
+              "type": "Card",
+              "title": "London",
+              "children": [
+                "t0"
+              ]
+            },
+            {
+              "id": "t0",
               "type": "Text",
               "variant": "body",
               "text": {
-                "$bind": "/city_0_detail"
+                "$bind": "/item_0_detail"
               }
             },
             {
               "id": "p1",
+              "type": "Card",
+              "title": "Berlin",
+              "children": [
+                "t1"
+              ]
+            },
+            {
+              "id": "t1",
               "type": "Text",
               "variant": "body",
               "text": {
-                "$bind": "/city_1_detail"
+                "$bind": "/item_1_detail"
               }
             },
             {
               "id": "p2",
+              "type": "Card",
+              "title": "Paris",
+              "children": [
+                "t2"
+              ]
+            },
+            {
+              "id": "t2",
               "type": "Text",
               "variant": "body",
               "text": {
-                "$bind": "/city_2_detail"
+                "$bind": "/item_2_detail"
               }
-            },
-            {
-              "id": "progress",
-              "type": "ProgressBar",
-              "value": {
-                "$bind": "/progress_value"
-              },
-              "max": 5,
-              "tone": "neutral"
             },
             {
               "id": "timeline",
               "type": "Timeline",
-              "title": "Process Timeline",
+              "title": "Research Process",
               "events": {
-                "$bind": "/timeline_events"
+                "$bind": "/timeline"
               }
             }
           ],
           "dataModel": {
-            "title": "Population comparison \u2014 composed by the live graph",
-            "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
-            "kpi_cities": 3,
-            "kpi_sources": 9,
-            "kpi_research_nodes": 3,
-            "largest_city": "London",
-            "population_bars": [
+            "title": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+            "goal": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+            "summary": "### Population Comparison Dashboard: London, Berlin, and Paris\n\nThis dashboard summarizes the demographic profiles and historical trends for three major European capitals based on available data.\n\n| Metric | London | Berlin | Paris |\n| :--- | :--- | :--- | :--- |\n| **Population Status** | Official census data available from 1961 onwards. | 3,769,495 (as of Dec 2019). | Historical peak reached during the interwar period. |\n| **Key Demographic Feature** | High diversity; significant metrics on non-UK born residents. | Most populous city proper in the EU; 4,227 inhabitants/km\u00b2. | High proportion of single people; majority born outside the capital. |\n| **Historical Context** | Current borough boundaries established in 1963. | Germany's largest city; 621,075 foreign residents (2015). | Population lower today than 100 years ago; peaked 1861\u20131921. |\n\n---\n\n#### Key Insights\n\n*   **London:** Modern demographic tracking focuses on borough-level geography, population density, and the integration of minority ethnic groups and foreign-born residents. Historical data prior to 1961 requires specialized research from Greater London Council archives.\n*   **Berlin:** Currently holds the title of the most populous city proper within the European Union. It maintains a high population density and detailed records on citizenship and country of birth.\n*   **Paris:** Exhibits a unique demographic trajectory where the population is currently lower than its historical peak in the early 20th century. The city has historically functioned as a hub for internal migration, with a consistent trend of residents being born outside the capital.",
+            "results": [
               {
                 "label": "London",
-                "value": 9.1882
+                "detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over "
               },
               {
                 "label": "Berlin",
-                "value": 3.775697
+                "detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents."
               },
               {
                 "label": "Paris",
-                "value": 2.06
+                "detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** "
+              }
+            ],
+            "items": [
+              {
+                "label": "London"
+              },
+              {
+                "label": "Berlin"
+              },
+              {
+                "label": "Paris"
+              }
+            ],
+            "metrics": [
+              {
+                "label": "London",
+                "value": 3
+              },
+              {
+                "label": "Berlin",
+                "value": 3
+              },
+              {
+                "label": "Paris",
+                "value": 3
               }
             ],
             "spark": [
-              9.1882,
-              3.775697,
-              2.06
+              3.0,
+              3.0,
+              3.0
             ],
             "table_rows": [
               {
-                "City": "London",
-                "Population_M": 9.1882,
+                "Item": "London",
                 "Sources": 3
               },
               {
-                "City": "Berlin",
-                "Population_M": 3.775697,
+                "Item": "Berlin",
                 "Sources": 3
               },
               {
-                "City": "Paris",
-                "Population_M": 2.06,
+                "Item": "Paris",
                 "Sources": 3
               }
             ],
-            "city_0_name": "London",
-            "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-            "city_1_name": "Berlin",
-            "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
-            "city_2_name": "Paris",
-            "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
-            "timeline_events": [
+            "item_count": 3,
+            "source_count": 9,
+            "item_0_label": "London",
+            "item_0_detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over ",
+            "item_1_label": "Berlin",
+            "item_1_detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents.",
+            "item_2_label": "Paris",
+            "item_2_detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** ",
+            "subjects": [
+              "London",
+              "Berlin",
+              "Paris"
+            ],
+            "timeline": [
               {
                 "time": "1",
                 "label": "run_started"
@@ -1063,7 +1074,7 @@
               },
               {
                 "time": "6",
-                "label": "task_succeeded search_3"
+                "label": "task_succeeded search_2"
               },
               {
                 "time": "7",
@@ -1071,7 +1082,7 @@
               },
               {
                 "time": "8",
-                "label": "task_succeeded search_2"
+                "label": "task_succeeded search_3"
               },
               {
                 "time": "9",
@@ -1107,55 +1118,81 @@
           }
         },
         "data_model": {
-          "title": "Population comparison \u2014 composed by the live graph",
-          "subtitle": "### European Cities Population Dashboard (2026 Estimates)\n\nThis dashboard provides a comparative overview of the population statistics for London, Berlin, and Paris based on recent 2026 projections.\n\n| City | Estimated Population | Annual Growth Trend |\n| :--- | :--- | :--- |\n| *",
-          "kpi_cities": 3,
-          "kpi_sources": 9,
-          "kpi_research_nodes": 3,
-          "largest_city": "London",
-          "population_bars": [
+          "title": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+          "goal": "Research the populations of London, Berlin and Paris, then compose a comparison dashboard.",
+          "summary": "### Population Comparison Dashboard: London, Berlin, and Paris\n\nThis dashboard summarizes the demographic profiles and historical trends for three major European capitals based on available data.\n\n| Metric | London | Berlin | Paris |\n| :--- | :--- | :--- | :--- |\n| **Population Status** | Official census data available from 1961 onwards. | 3,769,495 (as of Dec 2019). | Historical peak reached during the interwar period. |\n| **Key Demographic Feature** | High diversity; significant metrics on non-UK born residents. | Most populous city proper in the EU; 4,227 inhabitants/km\u00b2. | High proportion of single people; majority born outside the capital. |\n| **Historical Context** | Current borough boundaries established in 1963. | Germany's largest city; 621,075 foreign residents (2015). | Population lower today than 100 years ago; peaked 1861\u20131921. |\n\n---\n\n#### Key Insights\n\n*   **London:** Modern demographic tracking focuses on borough-level geography, population density, and the integration of minority ethnic groups and foreign-born residents. Historical data prior to 1961 requires specialized research from Greater London Council archives.\n*   **Berlin:** Currently holds the title of the most populous city proper within the European Union. It maintains a high population density and detailed records on citizenship and country of birth.\n*   **Paris:** Exhibits a unique demographic trajectory where the population is currently lower than its historical peak in the early 20th century. The city has historically functioned as a hub for internal migration, with a consistent trend of residents being born outside the capital.",
+          "results": [
             {
               "label": "London",
-              "value": 9.1882
+              "detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over "
             },
             {
               "label": "Berlin",
-              "value": 3.775697
+              "detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents."
             },
             {
               "label": "Paris",
-              "value": 2.06
+              "detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** "
+            }
+          ],
+          "items": [
+            {
+              "label": "London"
+            },
+            {
+              "label": "Berlin"
+            },
+            {
+              "label": "Paris"
+            }
+          ],
+          "metrics": [
+            {
+              "label": "London",
+              "value": 3
+            },
+            {
+              "label": "Berlin",
+              "value": 3
+            },
+            {
+              "label": "Paris",
+              "value": 3
             }
           ],
           "spark": [
-            9.1882,
-            3.775697,
-            2.06
+            3.0,
+            3.0,
+            3.0
           ],
           "table_rows": [
             {
-              "City": "London",
-              "Population_M": 9.1882,
+              "Item": "London",
               "Sources": 3
             },
             {
-              "City": "Berlin",
-              "Population_M": 3.775697,
+              "Item": "Berlin",
               "Sources": 3
             },
             {
-              "City": "Paris",
-              "Population_M": 2.06,
+              "Item": "Paris",
               "Sources": 3
             }
           ],
-          "city_0_name": "London",
-          "city_0_detail": "Estimates for the current population of London vary depending on the source:\n\n*   **World Population Review** estimates the 2026 population at approximately **9,188,200**, noting a 0.54% annual growth rate from the 2025 figure of 9,138,835.\n*   **Population Pie** cites a higher figure of **9.8 million** for the population of Greater London as of September 2025, referencing Wikipedia data.",
-          "city_1_name": "Berlin",
-          "city_1_detail": "The current estimated population of Berlin is 3,775,697, according to 2026 projections. The city has experienced an annual growth rate of 1.22%, reflecting an increase of 45,490 people over the last year.",
-          "city_2_name": "Paris",
-          "city_2_detail": "The current population of Paris is estimated to be approximately 2.06 million residents within the city proper. Projections for 2026 place the figure at 2,059,821, reflecting a recent annual decline of about 0.7%. Additionally, the broader Paris metropolitan area is estimated to have a population of approximately 12.2 million.",
-          "timeline_events": [
+          "item_count": 3,
+          "source_count": 9,
+          "item_0_label": "London",
+          "item_0_detail": "Based on the provided documents, here is a summary regarding London's population:\n\n*   **Historical Data:** Official census-based population statistics for London\u2019s 32 boroughs and the City of London are available from 1961 onwards, following the definition of current borough boundaries in 1963. Population data prior to 1961 must be derived from alternative historical sources, such as research published by the Greater London Council in 1978.\n*   **Current Demographics:** Modern population data for London is categorized by geography and includes metrics such as population density, changes over ",
+          "item_1_label": "Berlin",
+          "item_1_detail": "As of December 2019, Berlin had a registered population of 3,769,495 inhabitants living within an area of 891.82 square kilometers, resulting in a population density of 4,227 inhabitants per square kilometer. \n\nBerlin holds the status of Germany's largest city and is the most populous city proper within the European Union. Historical data from December 2015 noted that the city had 621,075 registered foreign residents.",
+          "item_2_label": "Paris",
+          "item_2_detail": "Based on the provided research, the population of Paris has undergone significant shifts over time:\n\n*   **Historical Context:** In 1574, following a period of instability, the population of Paris was estimated at approximately 350,000. At that time, it was significantly larger than other major cities like Lyon (100,000), Milan (180,000), and Rouen (50,000).\n*   **Peak Population:** Paris experienced a major growth phase between 1861 and 1921, during which it gained over 1.2 million residents. The city's population reached its historical peak during the interwar period.\n*   **Modern Trends:** ",
+          "subjects": [
+            "London",
+            "Berlin",
+            "Paris"
+          ],
+          "timeline": [
             {
               "time": "1",
               "label": "run_started"
@@ -1178,7 +1215,7 @@
             },
             {
               "time": "6",
-              "label": "task_succeeded search_3"
+              "label": "task_succeeded search_2"
             },
             {
               "time": "7",
@@ -1186,7 +1223,7 @@
             },
             {
               "time": "8",
-              "label": "task_succeeded search_2"
+              "label": "task_succeeded search_3"
             },
             {
               "time": "9",
@@ -1221,25 +1258,22 @@
           "progress_max": 5
         },
         "validator": {
-          "proposed": 16,
-          "accepted": 16,
+          "proposed": 13,
+          "accepted": 13,
           "rejected": 0,
           "ok": true,
           "rejections": [],
           "dangling_child_refs": [],
           "component_types": [
-            "BarChart",
+            "Card",
             "Column",
             "DataTable",
             "ProgressBar",
-            "Row",
-            "Sparkline",
-            "StatTile",
             "Tabs",
             "Text",
             "Timeline"
           ],
-          "component_count": 16
+          "component_count": 13
         },
         "upstream_used": [
           "London",
